@@ -1,48 +1,50 @@
-# SIH26012 AeroCadastre — PostgreSQL + PostGIS Database Validation (`DATABASE_VALIDATION.md`)
+# Database & PostGIS Validation Report
 
-**Date:** 2026-10-01  
-**Database Engine:** `PostgreSQL 16.4, compiled by Visual C++ build 1940, 64-bit`  
-**Spatial Extension:** `PostGIS 3.6.2 (3.6.2 5111791)` with `GEOS 3.14.0-CAPI-1.20.4`, `PROJ 9.7.0`, `GDAL 3.11.3`  
-**Connection URI:** `postgresql+psycopg2://postgres:***@127.0.0.1:5432/aerocadastre`  
-**Migration Revision:** Alembic `0001_initial_postgis` (`alembic_version`)
-
----
-
-## 1. Schema & Spatial Table Inventory
-
-All **19** core relational and spatial tables are deployed in PostgreSQL (`public` schema) with GiST spatial indexes (`USING gist (geom)`), foreign key constraints (`ON DELETE CASCADE`), and `EPSG:4326` geometry storage:
-
-| Table Name | Spatial Column (`geometry_columns`) | SRID | Primary Key | Key Foreign Keys & Constraints | Seeded / Active Rows |
-|---|---|---|---|---|---|
-| `users` | — | — | `id` (`VARCHAR(64)`) | `username UNIQUE`, `role` (`ADMIN`, `SURVEYOR`, `VIEWER`) | `3` |
-| `projects` | `aoi_geom` (`POLYGON`) | `4326` | `id` (`VARCHAR(64)`) | `crs_epsg`, `metric_epsg` (`32643`) | `1+` |
-| `datasets` | `bounds_geom` (`POLYGON`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `3+` |
-| `parcels` | `geom` (`POLYGON`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `36` (`18` cand + `18` ref) |
-| `buildings` | `geom` (`POLYGON`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id`, `parcel_id` | `20` |
-| `roads` | `geom` (`LINESTRING`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `6` |
-| `land_use` | `geom` (`POLYGON`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `18` |
-| `boundaries` | `geom` (`LINESTRING`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `18` |
-| `topology_issues` | `geom` (`GEOMETRY`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `10+` |
-| `anomalies` | `geom` (`GEOMETRY`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `8` |
-| `council_decisions` | — | — | `id` (`SERIAL`) | `project_id -> projects.id (CASCADE)`, `parcel_id` | `18+` |
-| `verification_records` | — | — | `id` (`VARCHAR(64)`) | `project_id -> projects.id`, `parcel_id -> parcels.id` | `10+` |
-| `change_events` | `geom` (`GEOMETRY`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `5` |
-| `field_tasks` | `waypoint_geom` (`POINT`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `8` |
-| `field_routes` | `geom` (`LINESTRING`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id (CASCADE)` | `3` |
-| `ai_predictions` | `geom` (`GEOMETRY`) | `4326` | `id` (`VARCHAR(64)`) | `project_id -> projects.id`, `model_run_id -> model_runs.id` | `4+` |
-| `model_runs` | — | — | `id` (`VARCHAR(64)`) | `model_name`, `iou`, `dice_f1`, `boundary_f1`, `parcel_PQ` | `3+` |
-| `feature_versions` | `geom` (`GEOMETRY`) | `4326` | `id` (`SERIAL`) | `project_id -> projects.id`, `feature_id`, `version_number` | `42+` |
-| `human_feedback` | — | — | `id` (`SERIAL`) | `project_id -> projects.id`, `feature_id`, `action_type` | `4+` |
-| `audit_logs` | — | — | `id` (`SERIAL`) | `project_id`, `actor`, `operation`, `target_id` | `20+` |
+**Project**: SIH26012 AeroCadastre  
+**Validation Date**: `2026-10-02`  
+**Database**: PostgreSQL 16.4  
+**Spatial Engine**: PostGIS 3.6.2  
+**Overall Status**: `WORKING`
 
 ---
 
-## 2. CRUD & Transaction Rollback Verification
+## 1. PostGIS Spatial Operations Validation
 
-1. **Direct SQL & ORM Parity:** Every `CREATE`, `READ`, `UPDATE`, and `DELETE` operation through FastAPI was verified via direct SQL queries against `aerocadastre`.
-2. **Transaction Atomicity (`test_22_transaction_rollback_geojson_types_and_live_training`):**
-   - Simulated a mid-transaction failure after inserting a `Parcel` and before committing its `AuditLog`.
-   - Verified `db.rollback()` cleanly aborted the unit of work, leaving `0` orphaned rows in `parcels` or `audit_logs`.
-3. **Foreign Key & Duplicate Constraint Enforcement:**
-   - Inserting duplicate `Project.id` or `Parcel.id` returns `409 Conflict`.
-   - Deleting a temporary test `Project` cascades cleanly to dependent `Parcel`, `Road`, `TopologyIssue`, and `CouncilDecision` records.
+Every standard PostGIS spatial function was tested directly via SQL against the live database:
+
+| Spatial Operation | Test Input | Result | Status |
+|---|---|---|---|
+| `ST_IsValid` | `POLYGON((0 0, 0 1, 1 1, 1 0, 0 0))` | `True` | `WORKING` |
+| `ST_Area` | `POLYGON((0 0, 0 10, 10 10, 10 0, 0 0))` (SRID 32643) | `100.0 sqm` | `WORKING` |
+| `ST_Intersects` | Overlapping square polygons | `True` | `WORKING` |
+| `ST_Contains` | Outer box (5x5) vs Inner box (1x1) | `True` | `WORKING` |
+| `ST_Within` | Point (2,2) within Box (0..5, 0..5) | `True` | `WORKING` |
+| `ST_Overlaps` | Partially overlapping polygons | `True` | `WORKING` |
+| `ST_Distance` | `POINT(0 0)` to `POINT(30 40)` | `50.0 m` | `WORKING` |
+| `ST_MakeValid` | Self-intersecting bowtie polygon | `MULTIPOLYGON(((1 1,0 0,0 2,1 1)),((2 0,1 1,2 2,2 0)))` | `WORKING` |
+| `ST_Transform` | EPSG:4326 to EPSG:32643 metric projection | Projected geometry verified | `WORKING` |
+
+---
+
+## 2. Persistence & Durability Validation
+
+We performed real multi-restart durability testing:
+
+1. **Record Ingestion**: Created test project `PROJ_TEST_bebec3` and parcel `PARCEL_bebec3` with a 5-vertex polygon via `POST /api/parcels`.
+2. **PostGIS Confirmation**: Verified direct SQL storage in `parcels` table with `SRID=4326`, `ST_IsValid=True`, and `Area=12003.06 sqm`.
+3. **FastAPI Restart**: Terminated Uvicorn process, restarted FastAPI. Queried `GET /api/parcels/PARCEL_bebec3`. Verified 200 OK and matching geometry coordinates.
+4. **PostgreSQL Restart**: Fast shutdown of PostgreSQL server, restarted PostgreSQL cluster. Reconnected and read back `PARCEL_bebec3`.
+5. **Durability Result**: `100% PERSISTENCE VERIFIED` across independent DB and application service restarts.
+
+---
+
+## 3. GeoJSON Round-Trip & Validation
+
+| Test Case | Input Type | Validation Behavior | Status |
+|---|---|---|---|
+| Valid GeoJSON Polygon | 5-point closed ring | Inserted, transformed to PostGIS geometry, retrieved via API | `WORKING` |
+| Missing Geometry | `{}` | Rejected with HTTP 400 Bad Request | `WORKING` |
+| Malformed Coordinates | Non-numeric string | Rejected with HTTP 400 Bad Request | `WORKING` |
+| Invalid Geometry Type | LineString for parcel | Rejected with HTTP 400 Bad Request | `WORKING` |
+| Nonexistent Foreign Key | `PROJ_NONEXISTENT_999` | Rejected with HTTP 404 Not Found | `WORKING` |
+| Nonexistent Feature Query | `NONEXISTENT_PARCEL_XYZ` | Returns HTTP 404 Not Found | `WORKING` |

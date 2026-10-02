@@ -272,6 +272,7 @@ def get_dashboard(
             "anomalies": anomaly_count,
             "change_events": chg_count,
             "temporal_changes": chg_count,
+            "model_experiments": len(runs),
             "verification_queue_size": pending_verif,
             "pending_verification": pending_verif,
             "council_decisions": council_count,

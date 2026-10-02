@@ -63,9 +63,15 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Database installers / downloads
+# Database installers / downloads / local cluster
 database/downloads/
+database/pgsql/
+database/pgdata/
+database/*.bin
+database/*.txz
+database/*.zip
 
 # Raster / geospatial data
 *.tif
 *.tiff
+

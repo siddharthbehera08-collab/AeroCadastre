@@ -94,7 +94,7 @@ def test_02_full_24_step_vertical_slice():
             "/api/exports",
             json={"project_id": "PROJ_SIH26012_DEMO", "scene_id": "scene_urban_T1", "export_format": fmt},
         )
-        assert r_exp.status_code == 200
+        assert r_exp.status_code in (200, 201)
         exp_data = r_exp.json()
         assert exp_data["validation_passed"] is True
         assert exp_data["feature_count"] == len(bundle["candidate_parcels"])

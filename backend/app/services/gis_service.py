@@ -98,9 +98,10 @@ def recompute_scene_topology_and_routes(db: Session, project_id: str, scene_id: 
     ).delete(synchronize_session=False)
     for rt in routes:
         rt_shp = shape(rt["geometry"])
+        route_uid = f"{project_id}_{rt['id']}" if not rt["id"].startswith(project_id) else rt["id"]
         db.add(
             FieldRoute(
-                id=rt["id"],
+                id=route_uid,
                 project_id=project_id,
                 scene_id=scene_id,
                 cluster_id=rt["cluster_id"],

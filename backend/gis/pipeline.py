@@ -696,9 +696,10 @@ def run_full_scene_pipeline(
     # 11. Plan Smart Field Routes
     routes = plan_smart_field_routes(scene_id, verif_tasks_for_routing, num_clusters=2)
     for rt in routes:
+        route_uid = f"{project_id}_{rt['id']}" if not rt["id"].startswith(project_id) else rt["id"]
         db.add(
             FieldRoute(
-                id=rt["id"],
+                id=route_uid,
                 project_id=project_id,
                 scene_id=scene_id,
                 cluster_id=rt["cluster_id"],
