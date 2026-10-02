@@ -1,0 +1,57 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_RD_001",
+        "road_class": "MAIN_ROAD",
+        "width_m": 2.5,
+        "length_m": 258.47,
+        "confidence": 0.94
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.595,
+            13.0002937
+          ],
+          [
+            77.5973812,
+            13.0002937
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_RD_002",
+        "road_class": "NARROW_LANE",
+        "width_m": 3.0,
+        "length_m": 263.6,
+        "confidence": 0.89
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.59605,
+            13.0014
+          ],
+          [
+            77.59605,
+            12.9990187
+          ]
+        ]
+      }
+    }
+  ]
+}

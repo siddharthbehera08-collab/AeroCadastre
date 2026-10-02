@@ -1,0 +1,59 @@
+{
+  "scene_id": "train_006",
+  "split": "train",
+  "seed": 1006,
+  "archetype": "irregular_settlement",
+  "temporal_epoch": "T1",
+  "data_label": "SYNTHETIC DEMO DATA",
+  "legal_disclaimer": "PRELIMINARY / CANDIDATE GEOMETRY - NOT LEGALLY AUTHORITATIVE LAND RECORDS",
+  "crs": "EPSG:4326",
+  "projected_crs": "EPSG:32643",
+  "image_size": [
+    128,
+    128
+  ],
+  "pixel_resolution_m": 0.5,
+  "origin_lonlat": [
+    77.595,
+    12.993
+  ],
+  "bounds_geojson": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          77.595,
+          12.9954
+        ],
+        [
+          77.5974,
+          12.9954
+        ],
+        [
+          77.5974,
+          12.993
+        ],
+        [
+          77.595,
+          12.993
+        ],
+        [
+          77.595,
+          12.9954
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "parcels": 16,
+    "reference_parcels": 16,
+    "buildings": 12,
+    "roads": 2,
+    "boundaries": 64
+  },
+  "dsm_stats": {
+    "min_m": 212.49,
+    "max_m": 227.75,
+    "mean_m": 217.68
+  }
+}

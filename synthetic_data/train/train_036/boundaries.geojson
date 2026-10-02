@@ -1,0 +1,1739 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_001",
+        "parcel_id": "train_036_P_001",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.894,
+        "length_m": 43.45,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5950888,
+            13.001341
+          ],
+          [
+            77.5954885,
+            13.0013194
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_002",
+        "parcel_id": "train_036_P_001",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.939,
+        "length_m": 45.49,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5954885,
+            13.0013194
+          ],
+          [
+            77.5954989,
+            13.0009086
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_003",
+        "parcel_id": "train_036_P_001",
+        "boundary_type": "INFERRED",
+        "confidence": 0.668,
+        "length_m": 43.31,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5954989,
+            13.0009086
+          ],
+          [
+            77.5951001,
+            13.0009212
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_004",
+        "parcel_id": "train_036_P_001",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.824,
+        "length_m": 46.49,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5951001,
+            13.0009212
+          ],
+          [
+            77.5950888,
+            13.001341
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_005",
+        "parcel_id": "train_036_P_002",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.946,
+        "length_m": 41.65,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5951211,
+            13.0008299
+          ],
+          [
+            77.5955042,
+            13.0008502
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_006",
+        "parcel_id": "train_036_P_002",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.892,
+        "length_m": 48.91,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955042,
+            13.0008502
+          ],
+          [
+            77.5954556,
+            13.0004109
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_007",
+        "parcel_id": "train_036_P_002",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.921,
+        "length_m": 38.37,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5954556,
+            13.0004109
+          ],
+          [
+            77.5951033,
+            13.000382
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_008",
+        "parcel_id": "train_036_P_002",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.847,
+        "length_m": 49.62,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5951033,
+            13.000382
+          ],
+          [
+            77.5951211,
+            13.0008299
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_009",
+        "parcel_id": "train_036_P_003",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.903,
+        "length_m": 42.75,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955247,
+            13.0013127
+          ],
+          [
+            77.5959179,
+            13.0013339
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_010",
+        "parcel_id": "train_036_P_003",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.922,
+        "length_m": 47.77,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5959179,
+            13.0013339
+          ],
+          [
+            77.5959082,
+            13.0009025
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_011",
+        "parcel_id": "train_036_P_003",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.933,
+        "length_m": 38.24,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5959082,
+            13.0009025
+          ],
+          [
+            77.5955575,
+            13.00087
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_012",
+        "parcel_id": "train_036_P_003",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.846,
+        "length_m": 49.13,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955575,
+            13.00087
+          ],
+          [
+            77.5955247,
+            13.0013127
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_013",
+        "parcel_id": "train_036_P_004",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.941,
+        "length_m": 41.16,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955326,
+            13.0007959
+          ],
+          [
+            77.5959118,
+            13.0007962
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_014",
+        "parcel_id": "train_036_P_004",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.942,
+        "length_m": 40.91,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5959118,
+            13.0007962
+          ],
+          [
+            77.5959521,
+            13.0004287
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_015",
+        "parcel_id": "train_036_P_004",
+        "boundary_type": "INFERRED",
+        "confidence": 0.725,
+        "length_m": 44.28,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5959521,
+            13.0004287
+          ],
+          [
+            77.5955442,
+            13.0004344
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_016",
+        "parcel_id": "train_036_P_004",
+        "boundary_type": "INFERRED",
+        "confidence": 0.766,
+        "length_m": 40.04,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955442,
+            13.0004344
+          ],
+          [
+            77.5955326,
+            13.0007959
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_017",
+        "parcel_id": "train_036_P_005",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.939,
+        "length_m": 58.64,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5961634,
+            13.0012999
+          ],
+          [
+            77.5967022,
+            13.0013389
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_018",
+        "parcel_id": "train_036_P_005",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.95,
+        "length_m": 48.11,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967022,
+            13.0013389
+          ],
+          [
+            77.5967129,
+            13.0009044
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_019",
+        "parcel_id": "train_036_P_005",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.881,
+        "length_m": 59.8,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967129,
+            13.0009044
+          ],
+          [
+            77.596163,
+            13.0008711
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_020",
+        "parcel_id": "train_036_P_005",
+        "boundary_type": "INFERRED",
+        "confidence": 0.62,
+        "length_m": 47.47,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.596163,
+            13.0008711
+          ],
+          [
+            77.5961634,
+            13.0012999
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_021",
+        "parcel_id": "train_036_P_006",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.826,
+        "length_m": 62.82,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5961518,
+            13.0008155
+          ],
+          [
+            77.5967293,
+            13.0008532
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_022",
+        "parcel_id": "train_036_P_006",
+        "boundary_type": "INFERRED",
+        "confidence": 0.775,
+        "length_m": 47.9,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967293,
+            13.0008532
+          ],
+          [
+            77.5967333,
+            13.0004205
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_023",
+        "parcel_id": "train_036_P_006",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.876,
+        "length_m": 59.46,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967333,
+            13.0004205
+          ],
+          [
+            77.5961874,
+            13.0003761
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_024",
+        "parcel_id": "train_036_P_006",
+        "boundary_type": "INFERRED",
+        "confidence": 0.648,
+        "length_m": 48.79,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5961874,
+            13.0003761
+          ],
+          [
+            77.5961518,
+            13.0008155
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_025",
+        "parcel_id": "train_036_P_007",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.921,
+        "length_m": 58.51,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967358,
+            13.0013384
+          ],
+          [
+            77.5972748,
+            13.0013333
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_026",
+        "parcel_id": "train_036_P_007",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.918,
+        "length_m": 51.45,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5972748,
+            13.0013333
+          ],
+          [
+            77.5973118,
+            13.0008699
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_027",
+        "parcel_id": "train_036_P_007",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.861,
+        "length_m": 56.93,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5973118,
+            13.0008699
+          ],
+          [
+            77.5967874,
+            13.0008796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_028",
+        "parcel_id": "train_036_P_007",
+        "boundary_type": "INFERRED",
+        "confidence": 0.736,
+        "length_m": 51.09,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967874,
+            13.0008796
+          ],
+          [
+            77.5967358,
+            13.0013384
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_029",
+        "parcel_id": "train_036_P_008",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.855,
+        "length_m": 58.3,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967835,
+            13.0008018
+          ],
+          [
+            77.5973205,
+            13.0007939
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_030",
+        "parcel_id": "train_036_P_008",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.849,
+        "length_m": 40.43,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5973205,
+            13.0007939
+          ],
+          [
+            77.5973078,
+            13.0004289
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_031",
+        "parcel_id": "train_036_P_008",
+        "boundary_type": "INFERRED",
+        "confidence": 0.679,
+        "length_m": 59.36,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5973078,
+            13.0004289
+          ],
+          [
+            77.5967619,
+            13.0003975
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_032",
+        "parcel_id": "train_036_P_008",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.885,
+        "length_m": 44.82,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967619,
+            13.0003975
+          ],
+          [
+            77.5967835,
+            13.0008018
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_033",
+        "parcel_id": "train_036_P_009",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.85,
+        "length_m": 39.13,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5951076,
+            13.000194
+          ],
+          [
+            77.5954681,
+            13.0001909
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_034",
+        "parcel_id": "train_036_P_009",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.869,
+        "length_m": 59.38,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5954681,
+            13.0001909
+          ],
+          [
+            77.5954962,
+            12.9996552
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_035",
+        "parcel_id": "train_036_P_009",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.823,
+        "length_m": 45.1,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5954962,
+            12.9996552
+          ],
+          [
+            77.5950807,
+            12.9996536
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_036",
+        "parcel_id": "train_036_P_009",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.839,
+        "length_m": 59.89,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5950807,
+            12.9996536
+          ],
+          [
+            77.5951076,
+            13.000194
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_037",
+        "parcel_id": "train_036_P_010",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.918,
+        "length_m": 39.66,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5951122,
+            12.9996301
+          ],
+          [
+            77.5954755,
+            12.999592
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_038",
+        "parcel_id": "train_036_P_010",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.871,
+        "length_m": 54.94,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5954755,
+            12.999592
+          ],
+          [
+            77.5954977,
+            12.9990962
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_039",
+        "parcel_id": "train_036_P_010",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.866,
+        "length_m": 42.36,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5954977,
+            12.9990962
+          ],
+          [
+            77.5951084,
+            12.9991227
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_040",
+        "parcel_id": "train_036_P_010",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.84,
+        "length_m": 56.17,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5951084,
+            12.9991227
+          ],
+          [
+            77.5951122,
+            12.9996301
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_041",
+        "parcel_id": "train_036_P_011",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.955,
+        "length_m": 43.6,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955296,
+            13.000206
+          ],
+          [
+            77.5959286,
+            13.0001608
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_042",
+        "parcel_id": "train_036_P_011",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.919,
+        "length_m": 50.31,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5959286,
+            13.0001608
+          ],
+          [
+            77.5958959,
+            12.9997074
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_043",
+        "parcel_id": "train_036_P_011",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.829,
+        "length_m": 35.87,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5958959,
+            12.9997074
+          ],
+          [
+            77.5955658,
+            12.9996928
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_044",
+        "parcel_id": "train_036_P_011",
+        "boundary_type": "INFERRED",
+        "confidence": 0.666,
+        "length_m": 56.94,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955658,
+            12.9996928
+          ],
+          [
+            77.5955296,
+            13.000206
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_045",
+        "parcel_id": "train_036_P_012",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.866,
+        "length_m": 42.89,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955477,
+            12.9995992
+          ],
+          [
+            77.5959404,
+            12.9996418
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_046",
+        "parcel_id": "train_036_P_012",
+        "boundary_type": "INFERRED",
+        "confidence": 0.718,
+        "length_m": 58.28,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5959404,
+            12.9996418
+          ],
+          [
+            77.5959179,
+            12.9991158
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_047",
+        "parcel_id": "train_036_P_012",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.924,
+        "length_m": 40.61,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5959179,
+            12.9991158
+          ],
+          [
+            77.5955439,
+            12.999105
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_048",
+        "parcel_id": "train_036_P_012",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.935,
+        "length_m": 54.71,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5955439,
+            12.999105
+          ],
+          [
+            77.5955477,
+            12.9995992
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_049",
+        "parcel_id": "train_036_P_013",
+        "boundary_type": "INFERRED",
+        "confidence": 0.612,
+        "length_m": 55.24,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5961886,
+            13.0001857
+          ],
+          [
+            77.5966969,
+            13.0002091
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_050",
+        "parcel_id": "train_036_P_013",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.893,
+        "length_m": 60.37,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5966969,
+            13.0002091
+          ],
+          [
+            77.5966874,
+            12.9996638
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_051",
+        "parcel_id": "train_036_P_013",
+        "boundary_type": "INFERRED",
+        "confidence": 0.724,
+        "length_m": 56.15,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5966874,
+            12.9996638
+          ],
+          [
+            77.596172,
+            12.9997068
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_052",
+        "parcel_id": "train_036_P_013",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.835,
+        "length_m": 53.04,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.596172,
+            12.9997068
+          ],
+          [
+            77.5961886,
+            13.0001857
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_053",
+        "parcel_id": "train_036_P_014",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.821,
+        "length_m": 60.36,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5961594,
+            12.9996463
+          ],
+          [
+            77.5967145,
+            12.9996148
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_054",
+        "parcel_id": "train_036_P_014",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.932,
+        "length_m": 55.69,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967145,
+            12.9996148
+          ],
+          [
+            77.5966913,
+            12.9991122
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_055",
+        "parcel_id": "train_036_P_014",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.872,
+        "length_m": 57.64,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5966913,
+            12.9991122
+          ],
+          [
+            77.5961603,
+            12.99911
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_056",
+        "parcel_id": "train_036_P_014",
+        "boundary_type": "INFERRED",
+        "confidence": 0.624,
+        "length_m": 59.37,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5961603,
+            12.99911
+          ],
+          [
+            77.5961594,
+            12.9996463
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_057",
+        "parcel_id": "train_036_P_015",
+        "boundary_type": "INFERRED",
+        "confidence": 0.768,
+        "length_m": 57.36,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967412,
+            13.0001677
+          ],
+          [
+            77.597269,
+            13.0001924
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_058",
+        "parcel_id": "train_036_P_015",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.953,
+        "length_m": 56.87,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.597269,
+            13.0001924
+          ],
+          [
+            77.5973232,
+            12.9996814
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_059",
+        "parcel_id": "train_036_P_015",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.907,
+        "length_m": 63.72,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5973232,
+            12.9996814
+          ],
+          [
+            77.5967364,
+            12.9996955
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_060",
+        "parcel_id": "train_036_P_015",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.944,
+        "length_m": 52.27,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967364,
+            12.9996955
+          ],
+          [
+            77.5967412,
+            13.0001677
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_061",
+        "parcel_id": "train_036_P_016",
+        "boundary_type": "INFERRED",
+        "confidence": 0.786,
+        "length_m": 53.18,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5967928,
+            12.9996057
+          ],
+          [
+            77.5972811,
+            12.9996442
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_062",
+        "parcel_id": "train_036_P_016",
+        "boundary_type": "VISIBLE",
+        "confidence": 0.823,
+        "length_m": 58.31,
+        "evidence_sources": [
+          "Drone_RGB_Edge",
+          "DSM_Breakline"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5972811,
+            12.9996442
+          ],
+          [
+            77.5972807,
+            12.9991174
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_063",
+        "parcel_id": "train_036_P_016",
+        "boundary_type": "INFERRED",
+        "confidence": 0.709,
+        "length_m": 53.32,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.5972807,
+            12.9991174
+          ],
+          [
+            77.596791,
+            12.9990795
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_036_BND_064",
+        "parcel_id": "train_036_P_016",
+        "boundary_type": "INFERRED",
+        "confidence": 0.756,
+        "length_m": 58.25,
+        "evidence_sources": [
+          "Road_Corridor_Offset",
+          "Adjacent_Parcel_Topology"
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.596791,
+            12.9990795
+          ],
+          [
+            77.5967928,
+            12.9996057
+          ]
+        ]
+      }
+    }
+  ]
+}

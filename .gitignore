@@ -1,0 +1,71 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Python tooling
+.pytest_cache/
+.cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.npm/
+*.tsbuildinfo
+
+# Data / generated datasets
+data/*
+!data/.gitkeep
+
+# ML models / weights
+models/*
+!models/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.safetensors
+
+# Generated outputs
+outputs/*
+!outputs/.gitkeep
+
+# Logs
+logs/*
+!logs/.gitkeep
+*.log
+
+# Experiments / generated artifacts
+experiments/*
+!experiments/.gitkeep
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Database installers / downloads
+database/downloads/
+
+# Raster / geospatial data
+*.tif
+*.tiff

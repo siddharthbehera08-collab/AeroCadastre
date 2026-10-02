@@ -1,0 +1,683 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_001",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "INFERRED",
+        "land_use_class": "industrial",
+        "area_sqm": 2348.96,
+        "perimeter_m": 195.78,
+        "building_count": 1,
+        "visible_edges": 2,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6220668,
+              12.9923392
+            ],
+            [
+              77.6225787,
+              12.9923395
+            ],
+            [
+              77.6225843,
+              12.9919576
+            ],
+            [
+              77.6220687,
+              12.9919601
+            ],
+            [
+              77.6220668,
+              12.9923392
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_002",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "residential",
+        "area_sqm": 2378.89,
+        "perimeter_m": 197.27,
+        "building_count": 1,
+        "visible_edges": 3,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6220597,
+              12.9919249
+            ],
+            [
+              77.6225806,
+              12.9919402
+            ],
+            [
+              77.6225841,
+              12.9915461
+            ],
+            [
+              77.6220635,
+              12.9915587
+            ],
+            [
+              77.6220597,
+              12.9919249
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_003",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "residential",
+        "area_sqm": 2343.51,
+        "perimeter_m": 195.4,
+        "building_count": 1,
+        "visible_edges": 4,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6226032,
+              12.9923437
+            ],
+            [
+              77.6231183,
+              12.9923425
+            ],
+            [
+              77.6231122,
+              12.9919618
+            ],
+            [
+              77.6226069,
+              12.9919599
+            ],
+            [
+              77.6226032,
+              12.9923437
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_004",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "INFERRED",
+        "land_use_class": "residential",
+        "area_sqm": 2332.68,
+        "perimeter_m": 195.49,
+        "building_count": 1,
+        "visible_edges": 2,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6226023,
+              12.9919221
+            ],
+            [
+              77.6231207,
+              12.9919186
+            ],
+            [
+              77.6231162,
+              12.9915477
+            ],
+            [
+              77.6225968,
+              12.9915448
+            ],
+            [
+              77.6226023,
+              12.9919221
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_005",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "commercial",
+        "area_sqm": 2203.66,
+        "perimeter_m": 189.81,
+        "building_count": 1,
+        "visible_edges": 4,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6232949,
+              12.9923227
+            ],
+            [
+              77.6237957,
+              12.9923222
+            ],
+            [
+              77.6237848,
+              12.9919573
+            ],
+            [
+              77.6232848,
+              12.9919546
+            ],
+            [
+              77.6232949,
+              12.9923227
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_006",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "mixed_use",
+        "area_sqm": 2325.27,
+        "perimeter_m": 194.73,
+        "building_count": 1,
+        "visible_edges": 3,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6232774,
+              12.9919279
+            ],
+            [
+              77.6237951,
+              12.991932
+            ],
+            [
+              77.623782,
+              12.9915579
+            ],
+            [
+              77.6232825,
+              12.9915409
+            ],
+            [
+              77.6232774,
+              12.9919279
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_007",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "INFERRED",
+        "land_use_class": "mixed_use",
+        "area_sqm": 2345.73,
+        "perimeter_m": 194.98,
+        "building_count": 1,
+        "visible_edges": 1,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6238143,
+              12.9923422
+            ],
+            [
+              77.6243035,
+              12.9923393
+            ],
+            [
+              77.6243186,
+              12.9919488
+            ],
+            [
+              77.62381,
+              12.9919501
+            ],
+            [
+              77.6238143,
+              12.9923422
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_008",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "vegetation",
+        "area_sqm": 2246.58,
+        "perimeter_m": 191.23,
+        "building_count": 0,
+        "visible_edges": 4,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6238113,
+              12.9919273
+            ],
+            [
+              77.6243097,
+              12.9919257
+            ],
+            [
+              77.6243081,
+              12.9915506
+            ],
+            [
+              77.6238106,
+              12.9915515
+            ],
+            [
+              77.6238113,
+              12.9919273
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_009",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "vacant",
+        "area_sqm": 3554.9,
+        "perimeter_m": 239.3,
+        "building_count": 0,
+        "visible_edges": 3,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6220596,
+              12.9912617
+            ],
+            [
+              77.622578,
+              12.9912624
+            ],
+            [
+              77.6225726,
+              12.9906794
+            ],
+            [
+              77.622078,
+              12.9906766
+            ],
+            [
+              77.6220596,
+              12.9912617
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_010",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "industrial",
+        "area_sqm": 3559.43,
+        "perimeter_m": 239.27,
+        "building_count": 2,
+        "visible_edges": 4,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6220757,
+              12.9906637
+            ],
+            [
+              77.6225747,
+              12.9906681
+            ],
+            [
+              77.6225874,
+              12.9900815
+            ],
+            [
+              77.6220605,
+              12.9900954
+            ],
+            [
+              77.6220757,
+              12.9906637
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_011",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "industrial",
+        "area_sqm": 3537.45,
+        "perimeter_m": 238.38,
+        "building_count": 2,
+        "visible_edges": 4,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6226011,
+              12.9912585
+            ],
+            [
+              77.6231248,
+              12.99127
+            ],
+            [
+              77.6231188,
+              12.9906926
+            ],
+            [
+              77.6226118,
+              12.9906935
+            ],
+            [
+              77.6226011,
+              12.9912585
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_012",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "residential",
+        "area_sqm": 3645.16,
+        "perimeter_m": 241.96,
+        "building_count": 2,
+        "visible_edges": 3,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.622593,
+              12.990674
+            ],
+            [
+              77.6231119,
+              12.9906571
+            ],
+            [
+              77.6231215,
+              12.9900919
+            ],
+            [
+              77.6225909,
+              12.990083
+            ],
+            [
+              77.622593,
+              12.990674
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_013",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "INFERRED",
+        "land_use_class": "residential",
+        "area_sqm": 3527.69,
+        "perimeter_m": 238.35,
+        "building_count": 2,
+        "visible_edges": 2,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6232846,
+              12.9912571
+            ],
+            [
+              77.623799,
+              12.9912717
+            ],
+            [
+              77.6237896,
+              12.9906758
+            ],
+            [
+              77.6232904,
+              12.9906945
+            ],
+            [
+              77.6232846,
+              12.9912571
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_014",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "INFERRED",
+        "land_use_class": "commercial",
+        "area_sqm": 3494.21,
+        "perimeter_m": 237.31,
+        "building_count": 2,
+        "visible_edges": 2,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6232794,
+              12.9906721
+            ],
+            [
+              77.6237812,
+              12.9906743
+            ],
+            [
+              77.6237881,
+              12.9900921
+            ],
+            [
+              77.6232894,
+              12.9900918
+            ],
+            [
+              77.6232794,
+              12.9906721
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_015",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "INFERRED",
+        "land_use_class": "commercial",
+        "area_sqm": 3533.09,
+        "perimeter_m": 238.76,
+        "building_count": 2,
+        "visible_edges": 1,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6238197,
+              12.991267
+            ],
+            [
+              77.6243078,
+              12.9912734
+            ],
+            [
+              77.6243165,
+              12.9906931
+            ],
+            [
+              77.6238004,
+              12.9906759
+            ],
+            [
+              77.6238197,
+              12.991267
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_000_P_016",
+        "parcel_layer": "CANDIDATE",
+        "boundary_representation": "VISIBLE",
+        "land_use_class": "mixed_use",
+        "area_sqm": 3616.96,
+        "perimeter_m": 241.56,
+        "building_count": 2,
+        "visible_edges": 3,
+        "temporal_epoch": "T1",
+        "data_label": "SYNTHETIC DEMO DATA"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6238005,
+              12.9906743
+            ],
+            [
+              77.6243038,
+              12.9906739
+            ],
+            [
+              77.624323,
+              12.9900802
+            ],
+            [
+              77.6238124,
+              12.9900805
+            ],
+            [
+              77.6238005,
+              12.9906743
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

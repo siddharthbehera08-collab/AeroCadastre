@@ -1,0 +1,59 @@
+{
+  "scene_id": "train_009",
+  "split": "train",
+  "seed": 1009,
+  "archetype": "waterfront_agricultural_edge",
+  "temporal_epoch": "T1",
+  "data_label": "SYNTHETIC DEMO DATA",
+  "legal_disclaimer": "PRELIMINARY / CANDIDATE GEOMETRY - NOT LEGALLY AUTHORITATIVE LAND RECORDS",
+  "crs": "EPSG:4326",
+  "projected_crs": "EPSG:32643",
+  "image_size": [
+    128,
+    128
+  ],
+  "pixel_resolution_m": 0.5,
+  "origin_lonlat": [
+    77.604,
+    12.993
+  ],
+  "bounds_geojson": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          77.604,
+          12.9954
+        ],
+        [
+          77.6064,
+          12.9954
+        ],
+        [
+          77.6064,
+          12.993
+        ],
+        [
+          77.604,
+          12.993
+        ],
+        [
+          77.604,
+          12.9954
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "parcels": 16,
+    "reference_parcels": 16,
+    "buildings": 10,
+    "roads": 2,
+    "boundaries": 64
+  },
+  "dsm_stats": {
+    "min_m": 210.81,
+    "max_m": 222.5,
+    "mean_m": 213.65
+  }
+}

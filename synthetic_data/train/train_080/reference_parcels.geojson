@@ -1,0 +1,651 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_001",
+        "parcel_id": "train_080_P_001",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "commercial",
+        "area_sqm": 3790.16,
+        "perimeter_m": 247.12,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5920744,
+              13.0103359
+            ],
+            [
+              77.5926863,
+              13.0103385
+            ],
+            [
+              77.5926868,
+              13.0098198
+            ],
+            [
+              77.5920663,
+              13.0098308
+            ],
+            [
+              77.5920744,
+              13.0103359
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_002",
+        "parcel_id": "train_080_P_002",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "mixed_use",
+        "area_sqm": 3901.54,
+        "perimeter_m": 251.15,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5920634,
+              13.0097912
+            ],
+            [
+              77.5926978,
+              13.0098088
+            ],
+            [
+              77.592702,
+              13.0092991
+            ],
+            [
+              77.5920643,
+              13.00928
+            ],
+            [
+              77.5920634,
+              13.0097912
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_003",
+        "parcel_id": "train_080_P_003",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "mixed_use",
+        "area_sqm": 3897.77,
+        "perimeter_m": 250.68,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5927228,
+              13.0103427
+            ],
+            [
+              77.5933484,
+              13.0103274
+            ],
+            [
+              77.5933485,
+              13.0098175
+            ],
+            [
+              77.5927198,
+              13.0098181
+            ],
+            [
+              77.5927228,
+              13.0103427
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_004",
+        "parcel_id": "train_080_P_004",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "vegetation",
+        "area_sqm": 3826.27,
+        "perimeter_m": 248.42,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.592756,
+              13.0098221
+            ],
+            [
+              77.5933708,
+              13.0098095
+            ],
+            [
+              77.5933769,
+              13.0092981
+            ],
+            [
+              77.5927472,
+              13.00931
+            ],
+            [
+              77.592756,
+              13.0098221
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_005",
+        "parcel_id": "train_080_P_005",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "vacant",
+        "area_sqm": 2236.66,
+        "perimeter_m": 192.08,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5935584,
+              13.0103357
+            ],
+            [
+              77.5939246,
+              13.01033
+            ],
+            [
+              77.5939163,
+              13.0098229
+            ],
+            [
+              77.5935511,
+              13.0098249
+            ],
+            [
+              77.5935584,
+              13.0103357
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_006",
+        "parcel_id": "train_080_P_006",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "industrial",
+        "area_sqm": 2249.9,
+        "perimeter_m": 192.21,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5935581,
+              13.0097976
+            ],
+            [
+              77.5939352,
+              13.0098003
+            ],
+            [
+              77.5939314,
+              13.0092964
+            ],
+            [
+              77.5935647,
+              13.0092945
+            ],
+            [
+              77.5935581,
+              13.0097976
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_007",
+        "parcel_id": "train_080_P_007",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "industrial",
+        "area_sqm": 2156.26,
+        "perimeter_m": 188.91,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5939577,
+              13.0103394
+            ],
+            [
+              77.5943145,
+              13.0103319
+            ],
+            [
+              77.5943108,
+              13.0098329
+            ],
+            [
+              77.5939559,
+              13.0098298
+            ],
+            [
+              77.5939577,
+              13.0103394
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_008",
+        "parcel_id": "train_080_P_008",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "residential",
+        "area_sqm": 2389.2,
+        "perimeter_m": 198.3,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5939756,
+              13.0098123
+            ],
+            [
+              77.5943554,
+              13.0098277
+            ],
+            [
+              77.5943593,
+              13.0092972
+            ],
+            [
+              77.5939776,
+              13.0092984
+            ],
+            [
+              77.5939756,
+              13.0098123
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_009",
+        "parcel_id": "train_080_P_009",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "residential",
+        "area_sqm": 3462.87,
+        "perimeter_m": 238.43,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5920621,
+              13.0090046
+            ],
+            [
+              77.5926965,
+              13.0090077
+            ],
+            [
+              77.5927019,
+              13.0085579
+            ],
+            [
+              77.5920631,
+              13.008549
+            ],
+            [
+              77.5920621,
+              13.0090046
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_010",
+        "parcel_id": "train_080_P_010",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "commercial",
+        "area_sqm": 3284.54,
+        "perimeter_m": 232.7,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5920626,
+              13.0085369
+            ],
+            [
+              77.5926952,
+              13.0085247
+            ],
+            [
+              77.5926874,
+              13.0080946
+            ],
+            [
+              77.5920644,
+              13.0080962
+            ],
+            [
+              77.5920626,
+              13.0085369
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_011",
+        "parcel_id": "train_080_P_011",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "commercial",
+        "area_sqm": 3253.91,
+        "perimeter_m": 230.96,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5927221,
+              13.0089978
+            ],
+            [
+              77.5933373,
+              13.0090049
+            ],
+            [
+              77.5933413,
+              13.0085685
+            ],
+            [
+              77.5927283,
+              13.0085524
+            ],
+            [
+              77.5927221,
+              13.0089978
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_012",
+        "parcel_id": "train_080_P_012",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "mixed_use",
+        "area_sqm": 3360.86,
+        "perimeter_m": 235.0,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5927521,
+              13.0085437
+            ],
+            [
+              77.5933834,
+              13.0085628
+            ],
+            [
+              77.5933707,
+              13.008101
+            ],
+            [
+              77.5927467,
+              13.0081141
+            ],
+            [
+              77.5927521,
+              13.0085437
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_013",
+        "parcel_id": "train_080_P_013",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "vegetation",
+        "area_sqm": 2044.77,
+        "perimeter_m": 181.78,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5935434,
+              13.0089999
+            ],
+            [
+              77.5939309,
+              13.0090088
+            ],
+            [
+              77.5939236,
+              13.0085467
+            ],
+            [
+              77.5935537,
+              13.0085632
+            ],
+            [
+              77.5935434,
+              13.0089999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_014",
+        "parcel_id": "train_080_P_014",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "vacant",
+        "area_sqm": 1896.11,
+        "perimeter_m": 175.34,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5935636,
+              13.0085299
+            ],
+            [
+              77.5939253,
+              13.0085333
+            ],
+            [
+              77.5939153,
+              13.0080942
+            ],
+            [
+              77.5935606,
+              13.0080877
+            ],
+            [
+              77.5935636,
+              13.0085299
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_015",
+        "parcel_id": "train_080_P_015",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "vacant",
+        "area_sqm": 1989.86,
+        "perimeter_m": 179.69,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5939522,
+              13.0090041
+            ],
+            [
+              77.5943191,
+              13.008997
+            ],
+            [
+              77.5943211,
+              13.0085476
+            ],
+            [
+              77.5939575,
+              13.0085466
+            ],
+            [
+              77.5939522,
+              13.0090041
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_080_REF_016",
+        "parcel_id": "train_080_P_016",
+        "parcel_layer": "REFERENCE",
+        "boundary_representation": "REFERENCE",
+        "land_use_class": "industrial",
+        "area_sqm": 1917.78,
+        "perimeter_m": 176.31,
+        "source": "Synthetic Legacy Cadastral Map (Non-Authoritative Demo)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5939919,
+              13.0085502
+            ],
+            [
+              77.5943524,
+              13.0085442
+            ],
+            [
+              77.5943539,
+              13.0081122
+            ],
+            [
+              77.5939931,
+              13.0080971
+            ],
+            [
+              77.5939919,
+              13.0085502
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_037_BLDG_001",
+        "parcel_id": "train_037_P_002",
+        "area_sqm": 960.52,
+        "perimeter_m": 124.12,
+        "centroid_lon": 77.5982766,
+        "centroid_lat": 13.0006547,
+        "height_m": 7.61,
+        "confidence": 0.922,
+        "temporal_epoch": "T1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5981406,
+              13.0008017
+            ],
+            [
+              77.5984125,
+              13.0008017
+            ],
+            [
+              77.5984125,
+              13.0005077
+            ],
+            [
+              77.5981406,
+              13.0005077
+            ],
+            [
+              77.5981406,
+              13.0008017
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_037_BLDG_002",
+        "parcel_id": "train_037_P_003",
+        "area_sqm": 1523.26,
+        "perimeter_m": 158.7,
+        "centroid_lon": 77.598825,
+        "centroid_lat": 13.0011141,
+        "height_m": 5.38,
+        "confidence": 0.798,
+        "temporal_epoch": "T1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5986094,
+              13.0012611
+            ],
+            [
+              77.5990406,
+              13.0012611
+            ],
+            [
+              77.5990406,
+              13.0009671
+            ],
+            [
+              77.5986094,
+              13.0009671
+            ],
+            [
+              77.5986094,
+              13.0012611
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_037_BLDG_003",
+        "parcel_id": "train_037_P_004",
+        "area_sqm": 960.52,
+        "perimeter_m": 124.12,
+        "centroid_lon": 77.5987454,
+        "centroid_lat": 13.0006547,
+        "height_m": 10.62,
+        "confidence": 0.915,
+        "temporal_epoch": "T1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5986094,
+              13.0008017
+            ],
+            [
+              77.5988813,
+              13.0008017
+            ],
+            [
+              77.5988813,
+              13.0005077
+            ],
+            [
+              77.5986094,
+              13.0005077
+            ],
+            [
+              77.5986094,
+              13.0008017
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_037_BLDG_004",
+        "parcel_id": "train_037_P_009",
+        "area_sqm": 1136.94,
+        "perimeter_m": 136.07,
+        "centroid_lon": 77.5982765,
+        "centroid_lat": 12.9998906,
+        "height_m": 5.34,
+        "confidence": 0.875,
+        "temporal_epoch": "T1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5981406,
+              13.0000646
+            ],
+            [
+              77.5984125,
+              13.0000646
+            ],
+            [
+              77.5984125,
+              12.9997166
+            ],
+            [
+              77.5981406,
+              12.9997166
+            ],
+            [
+              77.5981406,
+              13.0000646
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "train_037_BLDG_005",
+        "parcel_id": "train_037_P_012",
+        "area_sqm": 1136.95,
+        "perimeter_m": 136.07,
+        "centroid_lon": 77.5987454,
+        "centroid_lat": 12.9993469,
+        "height_m": 11.05,
+        "confidence": 0.941,
+        "temporal_epoch": "T1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.5986094,
+              12.9995209
+            ],
+            [
+              77.5988813,
+              12.9995209
+            ],
+            [
+              77.5988813,
+              12.9991729
+            ],
+            [
+              77.5986094,
+              12.9991729
+            ],
+            [
+              77.5986094,
+              12.9995209
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

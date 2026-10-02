@@ -1,0 +1,59 @@
+{
+  "scene_id": "train_063",
+  "split": "train",
+  "seed": 1063,
+  "archetype": "mixed_commercial_corridor",
+  "temporal_epoch": "T1",
+  "data_label": "SYNTHETIC DEMO DATA",
+  "legal_disclaimer": "PRELIMINARY / CANDIDATE GEOMETRY - NOT LEGALLY AUTHORITATIVE LAND RECORDS",
+  "crs": "EPSG:4326",
+  "projected_crs": "EPSG:32643",
+  "image_size": [
+    128,
+    128
+  ],
+  "pixel_resolution_m": 0.5,
+  "origin_lonlat": [
+    77.631,
+    13.001999999999999
+  ],
+  "bounds_geojson": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          77.631,
+          13.0044
+        ],
+        [
+          77.6334,
+          13.0044
+        ],
+        [
+          77.6334,
+          13.002
+        ],
+        [
+          77.631,
+          13.002
+        ],
+        [
+          77.631,
+          13.0044
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "parcels": 16,
+    "reference_parcels": 16,
+    "buildings": 15,
+    "roads": 2,
+    "boundaries": 64
+  },
+  "dsm_stats": {
+    "min_m": 210.94,
+    "max_m": 229.87,
+    "mean_m": 215.51
+  }
+}

@@ -1,0 +1,856 @@
+{
+  "info": {
+    "_postman_id": "9f813c42-4c6e-4821-b8f7-a92e64120612",
+    "name": "AeroCadastre GeoAI Enterprise Backend (SIH26012)",
+    "description": "Complete Postman v2.1 API test collection for SIH26012 AeroCadastre FastAPI + PostgreSQL 16.4 + PostGIS 3.6.2 backend. Includes positive CRUD workflows, PostGIS spatial topology & conflict queries, AI inference persistence, AI Council deliberation, exports, and negative tests (401 Unauthorized, 404 Not Found, 400/422 Malformed Geometry).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "projectId",
+      "value": "PROJ_SIH26012_DEMO",
+      "type": "string"
+    },
+    {
+      "key": "createdProjectId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "parcelId",
+      "value": "scene_urban_T1_PARCEL_001",
+      "type": "string"
+    },
+    {
+      "key": "createdParcelId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "verificationId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "analysisId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Health & PostGIS Diagnostics",
+      "item": [
+        {
+          "name": "GET /api/health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.test('PostgreSQL + PostGIS is connected', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.status).to.eql('ONLINE');",
+                  "    pm.expect(json.database_engine).to.eql('PostgreSQL + PostGIS');",
+                  "    pm.expect(json.public_table_count).to.be.at.least(22);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Authentication & Security",
+      "item": [
+        {
+          "name": "POST /api/auth/login (Valid Credentials)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.access_token).to.be.a('string');",
+                  "pm.collectionVariables.set('accessToken', json.access_token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"surveyor@aerocadastre.gov.in\",\n  \"password\": \"sih26012_surveyor\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/auth/me (Authorized)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.test('User profile returned', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.email).to.eql('surveyor@aerocadastre.gov.in');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{accessToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/auth/me (Unauthorized - 401)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Unauthorized request returns 401', function () { pm.response.toHaveStatus(401); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Projects CRUD",
+      "item": [
+        {
+          "name": "GET /api/projects",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json).to.be.an('array');",
+                  "pm.expect(json.length).to.be.above(0);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/projects",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 201', function () { pm.response.toHaveStatus(201); });",
+                  "const json = pm.response.json();",
+                  "pm.collectionVariables.set('createdProjectId', json.id);",
+                  "pm.expect(json.bbox_geometry.type).to.eql('Polygon');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Cadastral Resurvey Sector\",\n  \"description\": \"Created via Postman collection\",\n  \"region_name\": \"Mysuru Rural Sector 3\",\n  \"crs\": \"EPSG:4326\",\n  \"projected_crs\": \"EPSG:32643\",\n  \"bbox_geojson\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": [\n      [\n        [77.5900, 12.9700],\n        [77.5950, 12.9700],\n        [77.5950, 12.9750],\n        [77.5900, 12.9750],\n        [77.5900, 12.9700]\n      ]\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/projects/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get('projectId'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/{{projectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "{{projectId}}"]
+            }
+          }
+        },
+        {
+          "name": "PUT /api/projects/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.expect(pm.response.json().name).to.include('Updated');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Cadastral Resurvey Sector (Updated)\",\n  \"region_name\": \"Mysuru Rural Sector 3B\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/{{createdProjectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "{{createdProjectId}}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/projects/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.expect(pm.response.json().deleted).to.be.true;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/{{createdProjectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "{{createdProjectId}}"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/projects/invalid-id (404 Not Found)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Invalid project ID returns 404', function () { pm.response.toHaveStatus(404); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/non-existent-project-id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "non-existent-project-id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Parcels CRUD & GeoJSON",
+      "item": [
+        {
+          "name": "GET /api/projects/{project_id}/parcels",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json).to.be.an('array');",
+                  "pm.expect(json.length).to.be.above(0);",
+                  "pm.collectionVariables.set('parcelId', json[0].id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/{{projectId}}/parcels",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "{{projectId}}", "parcels"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/parcels/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.id).to.eql(pm.collectionVariables.get('parcelId'));",
+                  "pm.expect(json.geometry.type).to.eql('Polygon');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels/{{parcelId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels", "{{parcelId}}"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/parcels (GeoJSON Polygon)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 201', function () { pm.response.toHaveStatus(201); });",
+                  "const json = pm.response.json();",
+                  "pm.collectionVariables.set('createdParcelId', json.id);",
+                  "pm.expect(json.area_sqm).to.be.above(1000);",
+                  "pm.expect(json.geometry.type).to.eql('Polygon');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"PROJ_SIH26012_DEMO\",\n  \"scene_id\": \"scene_urban_T1\",\n  \"land_use_class\": \"residential\",\n  \"boundary_representation\": \"HUMAN_VERIFIED\",\n  \"crs\": \"EPSG:4326\",\n  \"geometry\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": [\n      [\n        [77.5970, 12.9770],\n        [77.5975, 12.9770],\n        [77.5975, 12.9774],\n        [77.5970, 12.9774],\n        [77.5970, 12.9770]\n      ]\n    ]\n  },\n  \"operator_id\": \"Surveyor_Verifier_01\",\n  \"reason\": \"Created via Postman collection\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels"]
+            }
+          }
+        },
+        {
+          "name": "PUT /api/parcels/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.expect(pm.response.json().verification_status).to.eql('HUMAN_VERIFIED');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"land_use_class\": \"commercial\",\n  \"verification_status\": \"HUMAN_VERIFIED\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels/{{createdParcelId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels", "{{createdParcelId}}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/parcels/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.expect(pm.response.json().deleted).to.be.true;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels/{{createdParcelId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels", "{{createdParcelId}}"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/parcels (Malformed Geometry - 400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Malformed geometry returns 400 or 422', function () {",
+                  "    pm.expect([400, 422]).to.include(pm.response.code);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"PROJ_SIH26012_DEMO\",\n  \"scene_id\": \"scene_urban_T1\",\n  \"geometry\": {\n    \"type\": \"LineString\",\n    \"coordinates\": [[77.59, 12.97], [77.60, 12.98]]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Buildings & Roads",
+      "item": [
+        {
+          "name": "GET /api/parcels/{parcel_id}/buildings",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.buildings).to.be.an('array');",
+                  "pm.expect(json.geojson.type).to.eql('FeatureCollection');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels/{{parcelId}}/buildings",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels", "{{parcelId}}", "buildings"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/projects/{project_id}/roads",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.roads).to.be.an('array');",
+                  "pm.expect(json.geojson.type).to.eql('FeatureCollection');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/{{projectId}}/roads",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "{{projectId}}", "roads"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Verification Workflow",
+      "item": [
+        {
+          "name": "GET /api/verification/queue",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.expect(pm.response.json().queue).to.be.an('array');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/verification/queue",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "verification", "queue"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/verification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 201', function () { pm.response.toHaveStatus(201); });",
+                  "const json = pm.response.json();",
+                  "pm.collectionVariables.set('verificationId', String(json.id));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"PROJ_SIH26012_DEMO\",\n  \"scene_id\": \"scene_urban_T1\",\n  \"parcel_id\": \"{{parcelId}}\",\n  \"status\": \"FIELD_VISIT_REQUESTED\",\n  \"priority\": \"HIGH\",\n  \"reviewer_notes\": \"Queued via Postman\",\n  \"verified_by\": \"Licensed Surveyor\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/verification",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "verification"]
+            }
+          }
+        },
+        {
+          "name": "PUT /api/verification/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "pm.expect(pm.response.json().status).to.eql('HUMAN_VERIFIED');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"HUMAN_VERIFIED\",\n  \"priority\": \"LOW\",\n  \"reviewer_notes\": \"Verified after GNSS rover stakeout\",\n  \"verified_by\": \"Chief Revenue Officer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/verification/{{verificationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "verification", "{{verificationId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. GIS Topology & Conflict Analysis",
+      "item": [
+        {
+          "name": "GET /api/parcels/{id}/topology",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.srid).to.eql(4326);",
+                  "pm.expect(json.is_valid).to.be.true;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels/{{parcelId}}/topology",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels", "{{parcelId}}", "topology"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/parcels/{id}/conflicts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.parcel_id).to.eql(pm.collectionVariables.get('parcelId'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/parcels/{{parcelId}}/conflicts",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "parcels", "{{parcelId}}", "conflicts"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. AI Analysis & Inference Persistence",
+      "item": [
+        {
+          "name": "POST /api/analysis/run",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 201', function () { pm.response.toHaveStatus(201); });",
+                  "const json = pm.response.json();",
+                  "pm.collectionVariables.set('analysisId', json.id);",
+                  "pm.expect(json.feature_count).to.be.above(0);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"PROJ_SIH26012_DEMO\",\n  \"scene_id\": \"scene_urban_T1\",\n  \"prediction_type\": \"FULL_SCENE_CADASTRAL_INFERENCE\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/analysis/run",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "analysis", "run"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/analysis/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.id).to.eql(pm.collectionVariables.get('analysisId'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/analysis/{{analysisId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "analysis", "{{analysisId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. AI Council Deliberation",
+      "item": [
+        {
+          "name": "POST /api/council/analyze",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 201', function () { pm.response.toHaveStatus(201); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.parcel_id).to.eql(pm.collectionVariables.get('parcelId'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"PROJ_SIH26012_DEMO\",\n  \"scene_id\": \"scene_urban_T1\",\n  \"parcel_id\": \"{{parcelId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/council/analyze",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "council", "analyze"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/council/{parcel_id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.toHaveStatus(200); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.parcel_id).to.eql(pm.collectionVariables.get('parcelId'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/council/{{parcelId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "council", "{{parcelId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. Cadastral Exports",
+      "item": [
+        {
+          "name": "POST /api/exports (GeoJSON)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 201', function () { pm.response.toHaveStatus(201); });",
+                  "const json = pm.response.json();",
+                  "pm.expect(json.validation_passed).to.be.true;",
+                  "pm.expect(json.file_size_bytes).to.be.above(0);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"PROJ_SIH26012_DEMO\",\n  \"scene_id\": \"scene_urban_T1\",\n  \"export_format\": \"GeoJSON\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/exports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "exports"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
