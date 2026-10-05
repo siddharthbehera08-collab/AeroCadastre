@@ -38,7 +38,9 @@ COPY alembic/ ./alembic/
 COPY alembic.ini .
 COPY synthetic_data/ ./synthetic_data/
 COPY configs/ ./configs/
-COPY models/ ./models/
+
+# Create an empty model directory. Model weights are intentionally excluded from Git.
+RUN mkdir -p /app/models
 
 # Expose dynamic PORT for Render
 EXPOSE 8000
