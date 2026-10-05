@@ -1,0 +1,11 @@
+Model,Model ID,Script Path,Start Time,End Time,Duration (s),Device,Status
+Model A: Building Detection,EXP_BUILDING_RESUNET_001,N/A (Reused),TRAINING_DURATION_NOT_VERIFIED,TRAINING_DURATION_NOT_VERIFIED,TRAINING_DURATION_NOT_VERIFIED,CPU (Historical),REUSED_EXISTING_CHECKPOINT
+Model B: Road Extraction,EXP_ROAD_RESUNET_001,N/A (Reused),TRAINING_DURATION_NOT_VERIFIED,TRAINING_DURATION_NOT_VERIFIED,TRAINING_DURATION_NOT_VERIFIED,CPU (Historical),REUSED_EXISTING_CHECKPOINT
+Model C: Supplementary LULC,EXP_MODEL_C_LULC_CHAMPION_XGBOOST,experiments/run_full_scale_hparam_search.py,2026-10-04 09:51:38,2026-10-04 09:51:53,15.2,CPU,SHORT_BENCHMARK
+Boundary Reliability AI,EXP_BOUNDARY_RELIABILITY_CHAMPION_LIGHTGBM,experiments/run_full_scale_hparam_search.py,2026-10-04 09:51:53,2026-10-04 09:51:54,0.8,CPU,DERIVED_DATA_EXPERIMENT
+GIS Conflict AI,EXP_GIS_CONFLICT_CHAMPION_RF,experiments/run_full_scale_hparam_search.py,2026-10-04 09:51:54,2026-10-04 09:51:55,0.7,CPU,CONTROLLED_SYNTHETIC_EXPERIMENT
+Parcel Plausibility AI,EXP_PARCEL_PLAUSIBILITY_CHAMPION_RF,experiments/run_full_scale_hparam_search.py,2026-10-04 09:51:55,2026-10-04 09:51:55,0.6,CPU,CONTROLLED_SYNTHETIC_EXPERIMENT
+Unsupervised Anomaly (Footprints),isolation_forest_footprints,experiments/model_h_anomaly/train_isolation_forest.py,2026-10-04 09:30:54,2026-10-04 09:30:55,1.2,CPU,SHORT_BENCHMARK
+Confidence AI,EXP_CONFIDENCE_CHAMPION_RF,experiments/run_full_scale_hparam_search.py,2026-10-04 09:51:55,2026-10-04 09:51:56,0.9,CPU,SYNTHETIC_CALIBRATION_EXPERIMENT
+Image Quality CNN,image_quality_cnn,experiments/image_quality/train_image_quality.py,2026-10-04 09:31:40,2026-10-04 09:31:56,16.4,CPU,SYNTHETIC_AUGMENTATION_EXPERIMENT
+Siamese Change Detection AI,siamese_change_net,experiments/model_i_change/train_siamese_change.py,2026-10-04 09:32:20,2026-10-04 09:32:38,18.1,CPU,EXPERIMENTAL_POC

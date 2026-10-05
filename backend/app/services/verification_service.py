@@ -20,9 +20,14 @@ from backend.app.utils.audit import record_audit_log
 
 VALID_VERIFICATION_STATUSES = {
     "PENDING",
+    "PRIORITY",
+    "ASSIGNED",
+    "FIELD_CHECKED",
+    "VERIFIED",
     "HUMAN_VERIFIED",
     "REJECTED",
     "FIELD_VISIT_REQUESTED",
+    "NEEDS_REVIEW",
     "ACCEPT_CANDIDATE",
 }
 

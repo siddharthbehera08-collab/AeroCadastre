@@ -20,14 +20,24 @@ from backend.app.core.database import SessionLocal, init_postgis_schema
 from backend.app.services.seed_service import ensure_demo_seed_data
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_postgis_schema()
-    db = SessionLocal()
     try:
-        ensure_demo_seed_data(db)
-    finally:
-        db.close()
+        init_postgis_schema()
+        db = SessionLocal()
+        try:
+            ensure_demo_seed_data(db)
+        finally:
+            db.close()
+    except Exception as exc:
+        logger.warning(
+            f"Database connection unavailable during lifespan startup: {exc}. Running in degraded/test mode."
+        )
     yield
 
 

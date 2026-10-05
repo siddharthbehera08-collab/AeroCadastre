@@ -1,0 +1,24 @@
+{
+  "DATA_MODE": "SYNTHETIC",
+  "SYNTHETIC_ONLY": true,
+  "FIXTURE_TYPE": "CONTROLLED_SYNTHETIC_TEST_FIXTURE",
+  "DESCRIPTION": "Synthetic topographic context attributes for EPSG:32643 cadastral testing",
+  "crs": "EPSG:32643",
+  "bbox": [375000.0, 2045000.0, 375250.0, 2045250.0],
+  "terrain_attributes": {
+    "elevation_mean_m": 560.25,
+    "elevation_min_m": 558.10,
+    "elevation_max_m": 563.40,
+    "elevation_std_m": 1.25,
+    "slope_mean_deg": 2.85,
+    "slope_max_deg": 6.10,
+    "aspect_mean_deg": 138.4,
+    "relief_m": 5.30,
+    "hillshade_mean": 182.0
+  },
+  "cadastral_priors": {
+    "terracing_probability": 0.05,
+    "drainage_constraint_detected": false,
+    "slope_instability_flag": false
+  }
+}

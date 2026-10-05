@@ -7,9 +7,9 @@
 __pycache__/
 *.py[cod]
 *.pyo
-.venv/
-venv/
-env/
+.venv*/
+venv*/
+env*/
 
 # Python tooling
 .pytest_cache/
@@ -70,6 +70,20 @@ database/pgdata/
 database/*.bin
 database/*.txz
 database/*.zip
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# Screenshots / browser artifacts
+screenshot*.png
+workspace_*.png
+*.screenshot.png
+dom_*.html
+
+# Additional datasets directories
+datasets/
 
 # Raster / geospatial data
 *.tif

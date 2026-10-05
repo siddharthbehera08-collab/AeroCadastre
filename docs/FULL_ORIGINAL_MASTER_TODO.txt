@@ -1,0 +1,871 @@
+<USER_REQUEST>
+============================================================
+AEROCADASTRE AI
+MASTER TODO — UPDATED SCIENTIFIC EXECUTION PLAN
+============================================================
+
+PROJECT ROOT
+D:\SIH26012_AeroCadastre
+
+RULE:
+Never mark an item complete without filesystem evidence,
+test output, metric/report evidence, or reproducible artifact.
+
+Never fabricate:
+- ground truth
+- metrics
+- ULPIN
+- cadastral authority
+- dataset availability
+- model performance
+- Indian validation results
+
+All inferred parcel outputs must be called:
+INFERRED PARCEL BOUNDARIES
+
+============================================================
+PHASE 0 — PROJECT + DATASET FOUNDATION
+============================================================
+
+[✓] Project architecture
+[✓] Synthetic prototype
+[✓] D-drive storage architecture
+[✓] Dataset registry
+[✓] Dataset provenance documentation
+[✓] Scientific readiness audit
+[✓] Leakage audit framework
+[✓] Data usage contracts
+
+[✓] Inria dataset acquisition
+[✓] Inria extraction
+[✓] Inria inspection
+[✓] Inria preprocessing
+[✓] Inria spatial split
+[✓] Inria patch generation
+
+[✓] SpaceNet Paris acquisition
+[✓] SpaceNet extraction
+[✓] SpaceNet preprocessing
+[✓] SpaceNet spatial split
+[✓] SpaceNet patch generation
+
+[ ] Verify final SpaceNet filesystem state
+[ ] Verify all expected files exist
+[ ] Verify checksums/manifests
+[ ] Final dataset inventory reconciliation
+
+
+============================================================
+PHASE 1 — MODEL A: BUILDING DETECTION
+============================================================
+
+[✓] Inria supervised dataset
+[✓] Building baseline
+[✓] ResUNet training
+[✓] Validation
+[✓] Untouched test evaluation
+[✓] Geographic holdout
+[✓] Building polygonization
+[✓] Building model registry
+[✓] Building tests
+[✓] Building scientific report
+
+[ ] Audit historical building experiments
+[ ] Verify augmentation/loss claims
+[ ] Run reproducibility experiment
+[ ] Improve building model if justified
+[ ] Indian-domain evaluation using Pune imagery/OSM
+[ ] Document domain-shift limitations
+
+
+============================================================
+PHASE 2 — MODEL B: ROAD DETECTION
+============================================================
+
+[✓] SpaceNet Paris supervised dataset
+[✓] Road baseline
+[✓] ResUNet road model
+[✓] Validation
+[✓] Untouched test
+[✓] Spatial leakage audit
+[✓] Metric audit
+[✓] GIS/CRS audit
+[✓] Road polygonization
+[✓] Road model registry
+[✓] Road tests
+
+[ ] Verify final SpaceNet download/extraction state
+[ ] Improve road model quality
+[ ] Investigate fragmentation
+[ ] Improve connectivity
+[ ] Evaluate thin/narrow roads
+[ ] Evaluate intersections
+[ ] Evaluate disconnected segments
+[ ] Indian-domain adaptation
+[ ] Pune OSM weak-reference evaluation
+[ ] Document road-domain limitations
+
+
+============================================================
+PHASE 3 — MODEL C: LAND-USE / LAND-COVER
+============================================================
+
+[✓] World Bank Mumbai LULC identified
+[✓] Mumbai LULC classified as supplementary only
+[✓] LULC provenance documented
+
+[ ] Acquire suitable Indian LULC dataset
+[ ] Prefer Pune/study-area-specific data
+[ ] Audit source taxonomy
+[ ] Define AeroCadastre LULC taxonomy
+[ ] Build class mapping
+[ ] Detect incompatible class definitions
+[ ] Generate training/validation/test splits
+[ ] Train baseline classifier/segmenter
+[ ] Train stronger model
+[ ] Evaluate per-class metrics
+[ ] Evaluate geographic holdout
+[ ] Generate georeferenced prediction rasters
+[ ] Register model
+[ ] Document limitations
+
+
+============================================================
+PHASE 4 — MODEL D: ELEVATION / TERRAIN FEATURES
+============================================================
+
+[✓] Pune derived elevation surface
+[✓] Provenance correction
+[✓] CRS validation
+[✓] Raster validation
+[✓] Elevation statistics
+
+[ ] Generate slope
+[ ] Generate aspect
+[ ] Generate relief
+[ ] Generate hillshade
+[ ] Generate terrain-gradient features
+[ ] Validate all derived rasters
+[ ] Align to common metric grid
+[ ] Document resolution limitations
+
+[ ] Acquire better official/free Indian DEM if available
+[ ] Prefer suitable DSM/DTM for study area
+[ ] Validate source provenance before use
+
+
+============================================================
+PHASE 5 — INDIAN DOMAIN ADAPTATION
+============================================================
+
+[ ] Finalize Indian study area
+[ ] Confirm study-area selection matrix
+[ ] Acquire Indian imagery/reference layers
+[ ] Acquire Indian OSM extract
+[ ] Acquire Indian LULC
+[ ] Acquire suitable elevation data
+[ ] Acquire available reference/cadastral data
+[ ] Verify CRS
+[ ] Verify resolution
+[ ] Verify spatial overlap
+
+Building:
+[ ] Run building model over Indian imagery
+[ ] Compare predictions against weak OSM reference
+[ ] Analyze domain shift
+[ ] Fine-tune only where scientifically justified
+
+Road:
+[ ] Run road model over Indian imagery
+[ ] Compare against OSM centerlines
+[ ] Analyze domain shift
+[ ] Improve connectivity if required
+
+Land-use:
+[ ] Train/evaluate Indian-compatible model
+
+Document:
+[ ] Indian adaptation report
+[ ] Known limitations
+[ ] Weak-label limitations
+[ ] No fake ground truth
+
+
+============================================================
+PHASE 6 — COMMON GEOSPATIAL EVIDENCE GRID
+============================================================
+
+[ ] Define common CRS
+[ ] Define metric coordinate system
+[ ] Define target resolution
+[ ] Define study-area extent
+[ ] Define raster alignment
+[ ] Define nodata handling
+
+[ ] Align imagery
+[ ] Align building probability
+[ ] Align road probability
+[ ] Align LULC probability
+[ ] Align elevation
+[ ] Align slope
+[ ] Align aspect
+[ ] Align GIS reference layers
+
+[ ] Build standardized evidence object
+
+
+============================================================
+PHASE 7 — MODEL E: MULTI-SOURCE FUSION
+============================================================
+
+[ ] Implement fusion input contract
+[ ] Load building probability
+[ ] Load road probability
+[ ] Load LULC probability
+[ ] Load terrain features
+[ ] Load OSM/reference evidence
+[ ] Calculate spatial relationships
+
+[ ] Evidence normalization
+[ ] Confidence normalization
+[ ] Missing-data handling
+[ ] Source reliability weighting
+[ ] Model disagreement calculation
+[ ] Positional uncertainty
+[ ] GSD-aware tolerance
+
+[ ] Fusion engine
+[ ] Fusion output raster
+[ ] Evidence provenance
+[ ] Fusion report
+[ ] Fusion tests
+
+Status:
+BLOCKED until upstream inference outputs exist.
+
+
+============================================================
+PHASE 8 — MODEL F: PARCEL BOUNDARY INFERENCE
+============================================================
+
+[ ] Define boundary-evidence targets
+[ ] Generate boundary evidence from:
+    [ ] buildings
+    [ ] roads
+    [ ] pathways
+    [ ] land-use transitions
+    [ ] terrain
+    [ ] GIS references
+    [ ] imagery edges
+    [ ] spatial context
+
+[ ] Boundary evidence model/rules
+[ ] Generate boundary probability map
+[ ] Generate candidate boundary lines
+[ ] Clean line network
+[ ] Snap/merge compatible boundaries
+[ ] Resolve intersections
+
+[ ] Generate INFERRED PARCEL BOUNDARIES
+[ ] Never call them legal cadastral boundaries
+[ ] Confidence per boundary
+[ ] Evidence provenance per boundary
+
+
+============================================================
+PHASE 9 — PARCEL POLYGON GENERATION
+============================================================
+
+[ ] Convert boundary network to polygons
+[ ] Close polygon gaps
+[ ] Remove invalid rings
+[ ] Remove slivers
+[ ] Handle multipart geometry
+[ ] Validate polygon orientation
+[ ] Calculate area
+[ ] Calculate perimeter
+[ ] Assign stable internal parcel ID
+
+[ ] Store inferred parcels in PostGIS
+[ ] Generate GeoJSON
+[ ] Generate GeoPackage
+[ ] Generate Shapefile if required
+
+[ ] Export validation
+
+
+============================================================
+PHASE 10 — MODEL G: TOPOLOGY ENGINE
+============================================================
+
+[✓] Basic topology architecture
+
+[ ] Implement overlap detection
+[ ] Implement gap detection
+[ ] Implement sliver detection
+[ ] Implement self-intersection detection
+[ ] Implement invalid polygon detection
+[ ] Implement duplicate geometry detection
+[ ] Implement disconnected geometry detection
+[ ] Implement containment checks
+[ ] Implement adjacency checks
+
+[ ] CRS-aware tolerance
+[ ] Area tolerance
+[ ] Geometry repair
+[ ] Topology report
+[ ] Automated tests
+
+
+============================================================
+PHASE 11 — MODEL H: CONFLICT + ANOMALY ENGINE
+============================================================
+
+Conflict:
+
+[ ] Compare inferred parcels vs GIS reference
+[ ] Calculate boundary displacement
+[ ] Calculate IoU
+[ ] Calculate Hausdorff distance
+[ ] Calculate overlap
+[ ] Calculate CRS/reference-age metadata
+[ ] Generate conflict reason codes
+
+Anomaly:
+
+[ ] Parcel area anomaly
+[ ] Shape anomaly
+[ ] Compactness anomaly
+[ ] Aspect-ratio anomaly
+[ ] Vertex-density anomaly
+[ ] Building-coverage anomaly
+[ ] Road-access anomaly
+[ ] Neighbourhood anomaly
+[ ] Temporal anomaly
+
+[ ] Deterministic anomaly baseline
+[ ] Isolation Forest experiment
+[ ] Compare deterministic vs ML anomaly results
+
+
+============================================================
+PHASE 12 — CONFIDENCE / RELIABILITY
+============================================================
+
+[ ] Building confidence
+[ ] Road confidence
+[ ] LULC confidence
+[ ] Boundary confidence
+[ ] Geometry confidence
+[ ] GIS-reference confidence
+[ ] Fusion confidence
+
+[ ] Calibration dataset
+[ ] Reliability features
+[ ] Correct/incorrect prediction dataset
+[ ] Model reliability model
+[ ] Calibration evaluation
+
+[ ] Overall parcel confidence
+[ ] Confidence explanation
+[ ] Uncertainty representation
+
+
+============================================================
+PHASE 13 — AI COUNCIL SPECIALIST MODELS
+============================================================
+
+Architecture:
+[✓] AI Council architecture
+
+Reliability AI:
+[ ] Dataset
+[ ] Features
+[ ] Training
+[ ] Calibration
+[ ] Evaluation
+
+Image Quality AI:
+[ ] Quality dataset
+[ ] Blur
+[ ] Shadow
+[ ] Occlusion
+[ ] Noise
+[ ] Misregistration
+[ ] Exposure
+[ ] Seam artifacts
+[ ] Train classifier/regressor
+[ ] Evaluate
+
+Boundary Reliability AI:
+[ ] Boundary dataset
+[ ] RGB features
+[ ] Elevation features
+[ ] GIS features
+[ ] Boundary context
+[ ] Train
+[ ] Evaluate
+
+GIS Conflict AI:
+[ ] Conflict dataset
+[ ] Boundary displacement
+[ ] IoU
+[ ] Hausdorff
+[ ] CRS
+[ ] Reference age
+[ ] Reference reliability
+[ ] Train
+[ ] Evaluate
+
+Anomaly AI:
+[ ] Parcel feature dataset
+[ ] Train Isolation Forest
+[ ] Evaluate
+[ ] Autoencoder experiment later
+
+Change Detection AI:
+[ ] Temporal dataset
+[ ] T1/T2 alignment
+[ ] Change labels
+[ ] Siamese/temporal model
+[ ] Evaluate
+
+Parcel Plausibility AI:
+[ ] Parcel dataset
+[ ] Geometry features
+[ ] Building features
+[ ] Road features
+[ ] LULC features
+[ ] Neighbour features
+[ ] GIS features
+[ ] Train
+[ ] Evaluate
+
+
+============================================================
+PHASE 14 — CHANGE DETECTION
+============================================================
+
+[ ] Identify suitable Indian temporal imagery
+[ ] Define meaningful change classes
+[ ] Align temporal scenes
+[ ] Generate temporal pairs
+[ ] Build labels
+[ ] Train baseline
+[ ] Train Siamese/change model
+[ ] Evaluate
+[ ] Generate change polygons
+[ ] Connect change to parcel IDs
+
+[ ] Mumbai experiment remains supplementary only
+
+
+============================================================
+PHASE 15 — AI COUNCIL FUSION
+============================================================
+
+[ ] Module status
+[ ] Evidence objects
+[ ] Evidence provenance
+[ ] Confidence
+[ ] Uncertainty
+[ ] Missing-evidence handling
+[ ] Model disagreement
+[ ] Positional uncertainty
+[ ] GSD tolerance
+[ ] GIS reliability
+[ ] Deterministic fusion rules
+[ ] Reason codes
+[ ] Decision precedence
+[ ] Council version
+[ ] Ruleset version
+[ ] Config hash
+[ ] Input hashes
+
+Decisions:
+
+[ ] ACCEPT_FOR_REVIEW
+[ ] REQUIRES_VERIFICATION
+[ ] LOW_CONFIDENCE
+[ ] GEOMETRY_ERROR
+[ ] CONFLICT_DETECTED
+
+Important:
+ACCEPT_FOR_REVIEW does NOT mean legally accepted parcel.
+
+
+============================================================
+PHASE 16 — HUMAN FIELD VERIFICATION
+============================================================
+
+[ ] Verification queue
+[ ] Priority scoring
+[ ] High priority
+[ ] Medium priority
+[ ] Low priority
+
+[ ] Supporting evidence display
+[ ] Conflicting evidence display
+[ ] Uncertainty display
+[ ] Reason codes
+
+Surveyor actions:
+
+[ ] Accept candidate
+[ ] Edit geometry
+[ ] Split parcel
+[ ] Merge parcels
+[ ] Reject candidate
+
+[ ] Store before geometry
+[ ] Store after geometry
+[ ] Store reason
+[ ] Store user
+[ ] Store timestamp
+[ ] Audit trail
+
+
+============================================================
+PHASE 17 — HUMAN-IN-THE-LOOP LEARNING
+============================================================
+
+[ ] Save verified corrections
+[ ] Build feedback dataset
+[ ] Identify difficult examples
+[ ] Active-learning selection
+[ ] Retrain specialist models
+[ ] Recalibrate confidence
+[ ] Compare old/new models
+[ ] Version models
+[ ] Version datasets
+[ ] Maintain provenance
+
+
+============================================================
+PHASE 18 — FIELD ROUTE PLANNING
+============================================================
+
+[ ] Generate verification points
+[ ] Calculate priority
+[ ] Group nearby verification points
+[ ] Build route graph
+[ ] Estimate travel distance
+[ ] Optimize route
+[ ] Display route in Web-GIS
+[ ] Store route
+[ ] Store verification outcome
+
+
+============================================================
+PHASE 19 — PARCEL TIME MACHINE
+============================================================
+
+[ ] Store parcel versions
+[ ] Store timestamps
+[ ] Track geometry changes
+[ ] Track land-use changes
+[ ] Track building changes
+[ ] Track road-access changes
+[ ] Track confidence changes
+
+[ ] Timeline UI
+[ ] Before/after comparison
+[ ] Change explanation
+[ ] Audit history
+
+
+============================================================
+PHASE 20 — CADASTRAL AI COPILOT
+============================================================
+
+[ ] Parcel context retrieval
+[ ] Evidence retrieval
+[ ] Explain parcel decision
+[ ] Explain confidence
+[ ] Explain conflicts
+[ ] Explain anomalies
+[ ] Explain changes
+[ ] Suggest verification action
+
+[ ] No fabricated legal conclusions
+[ ] No fabricated ULPIN
+[ ] No claim of statutory cadastral authority
+
+
+============================================================
+PHASE 21 — SECURITY
+============================================================
+
+[ ] Auth hardening
+[ ] RBAC
+[ ] Role enforcement
+[ ] Token/session validation
+[ ] Input validation
+[ ] File upload security
+[ ] Path traversal protection
+[ ] SQL injection testing
+[ ] API authorization testing
+
+[ ] Adversarial API testing
+[ ] Rate-limit testing
+[ ] Invalid payload testing
+[ ] Geometry abuse testing
+[ ] Oversized file testing
+
+
+============================================================
+PHASE 22 — DATABASE / POSTGIS
+============================================================
+
+[ ] Schema audit
+[ ] Spatial index audit
+[ ] Constraint audit
+[ ] Foreign-key audit
+[ ] Geometry validation
+[ ] CRS enforcement
+[ ] Permission audit
+[ ] SQL injection audit
+[ ] Migration audit
+[ ] Backup/recovery test
+[ ] Audit-log integrity
+
+
+============================================================
+PHASE 23 — BACKEND / API
+============================================================
+
+[ ] Model loading
+[ ] Inference APIs
+[ ] Fusion API
+[ ] Parcel API
+[ ] Topology API
+[ ] Conflict API
+[ ] Council API
+[ ] Verification API
+[ ] Feedback API
+[ ] Change detection API
+[ ] Route API
+[ ] Copilot API
+
+[ ] API schema validation
+[ ] Error handling
+[ ] Missing-data handling
+[ ] Long-running inference handling
+[ ] Logging
+[ ] Provenance tracking
+
+
+============================================================
+PHASE 24 — FRONTEND / WEB-GIS
+============================================================
+
+[ ] Welcome page
+[ ] Authentication
+[ ] Dashboard
+[ ] Map viewer
+[ ] Layer controls
+[ ] Building layer
+[ ] Road layer
+[ ] LULC layer
+[ ] Elevation layer
+[ ] Boundary evidence
+[ ] Inferred parcels
+
+[ ] Confidence visualization
+[ ] Conflict visualization
+[ ] Anomaly visualization
+[ ] Verification queue
+[ ] Geometry editor
+[ ] Split
+[ ] Merge
+[ ] Reject
+[ ] Accept-for-review
+
+[ ] Evidence panel
+[ ] AI Council panel
+[ ] Audit history
+[ ] Time Machine
+[ ] Route planning
+[ ] Copilot
+
+
+============================================================
+PHASE 25 — FULL E2E INTEGRATION
+============================================================
+
+One complete scene:
+
+Raw imagery
+    ↓
+Preprocessing
+    ↓
+Building AI
+    ↓
+Road AI
+    ↓
+Land-use AI
+    ↓
+Terrain features
+    ↓
+Boundary evidence
+    ↓
+Multi-source fusion
+    ↓
+Parcel inference
+    ↓
+Polygon generation
+    ↓
+Topology validation
+    ↓
+Conflict/anomaly detection
+    ↓
+Council specialist models
+    ↓
+Council fusion
+    ↓
+Verification priority
+    ↓
+Human edit
+    ↓
+PostGIS
+    ↓
+GIS export
+    ↓
+Feedback dataset
+
+[ ] Complete E2E pipeline
+[ ] E2E automated test
+[ ] Failure recovery
+[ ] Missing-data scenario
+[ ] Low-confidence scenario
+[ ] Conflicting-model scenario
+[ ] Invalid-geometry scenario
+[ ] Large-scene stress test
+
+
+============================================================
+PHASE 26 — FINAL SCIENTIFIC VALIDATION
+============================================================
+
+[ ] No fabricated metrics
+[ ] No fake ground truth
+[ ] No fake ULPIN
+[ ] Synthetic data clearly labelled
+[ ] Model versions recorded
+[ ] Dataset versions recorded
+[ ] Reproducible experiments
+[ ] Error handling
+[ ] Missing-data handling
+[ ] CRS validation
+[ ] Geometry validation
+[ ] Stress tests
+[ ] Geographic holdout
+[ ] Council ablation tests
+[ ] Baseline comparisons
+[ ] Audit-log verification
+[ ] Export validation
+[ ] Frontend/backend integration
+[ ] Security validation
+[ ] Performance validation
+
+
+============================================================
+PHASE 27 — FINAL DOCUMENTATION
+============================================================
+
+[ ] Dataset inventory
+[ ] Dataset statistics
+[ ] Dataset gaps
+[ ] Download log
+[ ] Data preparation report
+[ ] Data leakage audit
+[ ] Dataset-model matrix
+[ ] Dataset registry
+[ ] Training reports
+[ ] Model registry
+[ ] Model cards
+[ ] Fusion report
+[ ] Parcel inference report
+[ ] Topology report
+[ ] Council report
+[ ] E2E report
+[ ] Security report
+[ ] Final scientific readiness report
+
+[ ] Final architecture diagram
+[ ] Final data-flow diagram
+[ ] Final model dependency diagram
+[ ] Final API documentation
+[ ] Final deployment documentation
+[ ] Final SIH demonstration documentation
+
+
+============================================================
+FINAL DEFINITION OF DONE
+============================================================
+
+AeroCadastre is NOT considered complete merely because:
+- models train
+- UI works
+- polygons appear
+- API responds
+
+It is complete only when:
+
+DATA
+✓ Real datasets
+✓ Provenance
+✓ No leakage
+✓ Reproducible preprocessing
+
+AI
+✓ Building
+✓ Road
+✓ LULC
+✓ Boundary evidence
+✓ Confidence
+✓ Change detection
+✓ Anomaly analysis
+
+GEOSPATIAL
+✓ CRS
+✓ Fusion
+✓ Parcel inference
+✓ Polygon generation
+✓ Topology
+✓ Conflict detection
+
+COUNCIL
+✓ Specialist models
+✓ Evidence
+✓ Confidence
+✓ Uncertainty
+✓ Reason codes
+✓ Fusion
+✓ Verification priority
+
+HUMAN
+✓ Surveyor verification
+✓ Editing
+✓ Audit trail
+✓ Feedback loop
+
+SYSTEM
+✓ Backend
+✓ PostGIS
+✓ Web-GIS
+✓ Auth/RBAC
+✓ Security
+✓ E2E testing
+
+SCIENCE
+✓ No fabricated claims
+✓ No fake cadastral authority
+✓ No fake ULPIN
+✓ Geographic validation
+✓ Reproducibility
+✓ Documented limitations
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-03T21:34:26+05:30.
+</ADDITIONAL_METADATA>

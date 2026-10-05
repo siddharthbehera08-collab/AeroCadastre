@@ -258,6 +258,25 @@ def query_cadastral_copilot(
             citations=["6-Agent AI Council", "PostGIS Parcel Inspector"],
         )
 
+    # 1b. Real Building Detection Model / Inria Benchmark queries
+    if any(w in q_low for w in ["inria", "aerial model", "building model", "resunet", "aerial building"]):
+        ans_lines = [
+            "### AeroCadastre Real Aerial Building Detection Engine (Inria Benchmark)",
+            "- **Active Champion Model:** `EXP_BUILDING_RESUNET_001` (Residual U-Net, 2.05M parameters)",
+            "- **Validation Metrics:** Val IoU = `46.42%` (+6.25% vs baseline), Val Dice = `63.41%`, Boundary F1 = `32.96%`, Precision = `61.19%`, Recall = `65.79%`",
+            "- **Untouched Test Metrics (250 multi-city patches):** Test IoU = `42.58%`, Test Dice = `59.73%`, Boundary F1 = `28.86%`, Pixel Accuracy = `82.52%`",
+            "- **Inference & GIS Extraction CLI:** `python infer_buildings.py --image <path> --checkpoint models/EXP_BUILDING_RESUNET_001_AerialInria.pt --output <dir>`",
+            "- **Cadastral Boundary Rule:** Building footprints serve as physical rooftop evidence and do *not* automatically establish legal cadastral parcel boundaries (setbacks, road ROW, and compound walls must be reconciled by the AI Council).",
+        ]
+        return _format_copilot_response(
+            tool_invoked="query_aerial_building_model",
+            answer="\n".join(ans_lines),
+            highlight_ids=[],
+            data={"model": "EXP_BUILDING_RESUNET_001", "val_iou": 0.4642, "test_iou": 0.4258},
+            suggested_tab="analysis",
+            citations=["Inria Aerial Benchmark", "EXP_BUILDING_RESUNET_001", "GeoAI Vision Model Registry"],
+        )
+
     # 2. Overlap / Gap / Topology queries
     if any(w in q_low for w in ["overlap", "gap", "topology", "self-intersection", "sliver"]):
         if not topo_issues:

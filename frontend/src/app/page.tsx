@@ -71,13 +71,13 @@ const NAV_ITEMS: NavItem[] = [
 
 export default function AeroCadastreApp() {
   // Entry flow stage: starts with Initial Brand Loading -> Welcome -> Login -> Opening -> App
-  const [entryStage, setEntryStage] = useState<AppEntryStage>("INTRO_LOADING");
+  const [entryStage, setEntryStage] = useState<AppEntryStage>("APP_READY");
   const [selectedProfile, setSelectedProfile] = useState<DemoUserProfile>(
     DEMO_PROFILES.Surveyor
   );
 
   // Main Application Navigation & State
-  const [activeTab, setActiveTab] = useState<string>("dashboard");
+  const [activeTab, setActiveTab] = useState<string>("workspace");
   const [projectId, setProjectId] = useState<string>("PROJ_SIH26012_DEMO");
   const [sceneId, setSceneId] = useState<string>("scene_urban_T1");
   const [scenes, setScenes] = useState<any[]>([]);
@@ -460,7 +460,7 @@ export default function AeroCadastreApp() {
   }
 
   return (
-    <div className="min-h-screen flex bg-[#F4F1EA] text-[#171615] selection:bg-[#B89A78]/30">
+    <div className="h-screen w-screen flex bg-[#F4F1EA] text-[#171615] selection:bg-[#B89A78]/30 overflow-hidden">
       {/* =====================================================================
           LEFT APPLICATION NAVIGATION SIDEBAR
       ===================================================================== */}
@@ -607,7 +607,7 @@ export default function AeroCadastreApp() {
       {/* =====================================================================
           MAIN WORKSPACE SHELL
       ===================================================================== */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className={`flex-1 flex flex-col min-w-0 h-full min-h-0 ${activeTab !== "workspace" ? "overflow-y-auto" : "overflow-hidden"}`}>
         {/* TOP CONTEXTUAL BAR */}
         <header className="h-[68px] bg-[#FAF8F3]/90 backdrop-blur-md border-b border-[#E4DFD5] px-6 flex items-center justify-between gap-4 sticky top-0 z-20">
           <div className="flex items-center gap-3 min-w-0">

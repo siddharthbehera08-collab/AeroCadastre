@@ -1,13 +1,37 @@
 import io
 import json
+import os
+import sys
 from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 from shapely.geometry import shape, mapping
 from shapely.affinity import translate
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
 from backend.main import app
 from backend.gis.topology import validate_parcels_topology
+
+
+def _is_postgres_available():
+    try:
+        from backend.app.core.database import engine
+        from sqlalchemy import text
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1;"))
+            return True
+    except Exception:
+        return False
+
+
+postgres_available = _is_postgres_available()
+pytestmark = pytest.mark.skipif(
+    not postgres_available,
+    reason="Full vertical slice integration test requires a live PostgreSQL/PostGIS instance listening on port 5432.",
+)
 
 client = TestClient(app)
 

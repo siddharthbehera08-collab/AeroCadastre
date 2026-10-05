@@ -4,8 +4,27 @@ import uuid
 from pathlib import Path
 import httpx
 import psycopg2
+import pytest
 
 BASE_URL = "http://127.0.0.1:8000"
+
+
+def _is_stack_available():
+    try:
+        conn = psycopg2.connect(
+            host="127.0.0.1", port=5432, user="postgres", dbname="aerocadastre", connect_timeout=1
+        )
+        conn.close()
+        r = httpx.get("http://127.0.0.1:8000/api/health", timeout=1.0)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+pytestmark = pytest.mark.skipif(
+    not _is_stack_available(),
+    reason="Requires live PostgreSQL (5432) and live FastAPI server (8000)",
+)
 
 
 def test_final_e2e():

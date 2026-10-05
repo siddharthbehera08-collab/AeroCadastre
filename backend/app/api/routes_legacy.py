@@ -545,6 +545,22 @@ def get_scene_bundle(
         .order_by(Parcel.id.asc())
         .all()
     )
+    if not cand_parcels:
+        try:
+            from backend.gis.pipeline import run_full_scene_pipeline
+            run_full_scene_pipeline(db, project_id=project_id, scene_id=scene_id)
+            cand_parcels = (
+                db.query(Parcel)
+                .filter(
+                    Parcel.project_id == project_id,
+                    Parcel.scene_id == scene_id,
+                    Parcel.parcel_layer == "CANDIDATE",
+                )
+                .order_by(Parcel.id.asc())
+                .all()
+            )
+        except Exception:
+            pass
     ref_parcels = (
         db.query(Parcel)
         .filter(

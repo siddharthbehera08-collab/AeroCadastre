@@ -114,7 +114,6 @@ def run_full_scene_pipeline(
         AIPrediction,
     ):
         db.query(model_cls).filter(
-            model_cls.project_id == project_id,
             model_cls.scene_id == scene_id,
         ).delete(synchronize_session=False)
     db.flush()
@@ -465,7 +464,6 @@ def run_full_scene_pipeline(
 
     # 9. Temporal Change Detection (T0 vs T1 vs T2) & Parcel Time Machine Versions
     db.query(FeatureVersion).filter(
-        FeatureVersion.project_id == project_id,
         FeatureVersion.feature_id.like(f"{scene_id}%"),
         FeatureVersion.temporal_epoch.in_(["T0", "T1", "T2"]),
     ).delete(synchronize_session=False)

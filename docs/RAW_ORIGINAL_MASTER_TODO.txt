@@ -1,0 +1,180 @@
+<USER_REQUEST>
+============================================================
+AEROCADASTRE AI
+MASTER TODO — UPDATED SCIENTIFIC EXECUTION PLAN
+============================================================
+
+PROJECT ROOT
+D:\SIH26012_AeroCadastre
+
+RULE:
+Never mark an item complete without filesystem evidence,
+test output, metric/report evidence, or reproducible artifact.
+
+Never fabricate:
+- ground truth
+- metrics
+- ULPIN
+- cadastral authority
+- dataset availability
+- model performance
+- Indian validation results
+
+All inferred parcel outputs must be called:
+INFERRED PARCEL BOUNDARIES
+
+============================================================
+PHASE 0 — PROJECT + DATASET FOUNDATION
+============================================================
+
+[✓] Project architecture
+[✓] Synthetic prototype
+[✓] D-drive storage architecture
+[✓] Dataset registry
+[✓] Dataset provenance documentation
+[✓] Scientific readiness audit
+[✓] Leakage audit framework
+[✓] Data usage contracts
+
+[✓] Inria dataset acquisition
+[✓] Inria extraction
+[✓] Inria inspection
+[✓] Inria preprocessing
+[✓] Inria spatial split
+[✓] Inria patch generation
+
+[✓] SpaceNet Paris acquisition
+[✓] SpaceNet extraction
+[✓] SpaceNet preprocessing
+[✓] SpaceNet spatial split
+[✓] SpaceNet patch generation
+
+[ ] Verify final SpaceNet filesystem state
+[ ] Verify all expected files exist
+[ ] Verify checksums/manifests
+[ ] Final dataset inventory reconciliation
+
+
+============================================================
+PHASE 1 — MODEL A: BUILDING DETECTION
+============================================================
+
+[✓] Inria supervised dataset
+[✓] Building baseline
+[✓] ResUNet training
+[✓] Validation
+[✓] Untouched test evaluation
+[✓] Geographic holdout
+[✓] Building polygonization
+[✓] Building model registry
+[✓] Building tests
+[✓] Building scientific report
+
+[ ] Audit historical building experiments
+[ ] Verify augmentation/loss claims
+[ ] Run rep
+<truncated 16835 bytes>
+ation
+[ ] Performance validation
+
+
+============================================================
+PHASE 27 — FINAL DOCUMENTATION
+============================================================
+
+[ ] Dataset inventory
+[ ] Dataset statistics
+[ ] Dataset gaps
+[ ] Download log
+[ ] Data preparation report
+[ ] Data leakage audit
+[ ] Dataset-model matrix
+[ ] Dataset registry
+[ ] Training reports
+[ ] Model registry
+[ ] Model cards
+[ ] Fusion report
+[ ] Parcel inference report
+[ ] Topology report
+[ ] Council report
+[ ] E2E report
+[ ] Security report
+[ ] Final scientific readiness report
+
+[ ] Final architecture diagram
+[ ] Final data-flow diagram
+[ ] Final model dependency diagram
+[ ] Final API documentation
+[ ] Final deployment documentation
+[ ] Final SIH demonstration documentation
+
+
+============================================================
+FINAL DEFINITION OF DONE
+============================================================
+
+AeroCadastre is NOT considered complete merely because:
+- models train
+- UI works
+- polygons appear
+- API responds
+
+It is complete only when:
+
+DATA
+✓ Real datasets
+✓ Provenance
+✓ No leakage
+✓ Reproducible preprocessing
+
+AI
+✓ Building
+✓ Road
+✓ LULC
+✓ Boundary evidence
+✓ Confidence
+✓ Change detection
+✓ Anomaly analysis
+
+GEOSPATIAL
+✓ CRS
+✓ Fusion
+✓ Parcel inference
+✓ Polygon generation
+✓ Topology
+✓ Conflict detection
+
+COUNCIL
+✓ Specialist models
+✓ Evidence
+✓ Confidence
+✓ Uncertainty
+✓ Reason codes
+✓ Fusion
+✓ Verification priority
+
+HUMAN
+✓ Surveyor verification
+✓ Editing
+✓ Audit trail
+✓ Feedback loop
+
+SYSTEM
+✓ Backend
+✓ PostGIS
+✓ Web-GIS
+✓ Auth/RBAC
+✓ Security
+✓ E2E testing
+
+SCIENCE
+✓ No fabricated claims
+✓ No fake cadastral authority
+✓ No fake ULPIN
+✓ Geographic validation
+✓ Reproducibility
+✓ Documented limitations
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-03T21:34:26+05:30.
+</ADDITIONAL_METADATA>

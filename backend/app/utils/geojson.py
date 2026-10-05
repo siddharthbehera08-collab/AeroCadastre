@@ -44,6 +44,18 @@ def validate_and_parse_geojson(
             f"Unsupported geometry type '{g_type}'. Expected one of {list(expected_types)}."
         )
 
+    def _count_coords(seq):
+        cnt = 0
+        for it in seq:
+            if isinstance(it, (list, tuple)) and it and isinstance(it[0], (int, float)):
+                cnt += 1
+            elif isinstance(it, (list, tuple)):
+                cnt += _count_coords(it)
+        return cnt
+
+    if coords and _count_coords(coords) > 10000:
+        raise ValueError("Geometry exceeds maximum vertex limit (10000 vertices).")
+
     try:
         geom = shape(geom_input)
     except Exception as exc:

@@ -1,0 +1,51 @@
+experiment_name: "EXP_BUILDING_RESUNET_GPU"
+model_type: "resunet"
+architecture: "ResUNet"
+device: "cuda:0"
+
+dataset:
+  name: "Inria Aerial Image Labeling Benchmark"
+  patch_size: 256
+  train_images_dir: "data/real/inria/patches/train/images"
+  train_masks_dir: "data/real/inria/patches/train/masks"
+  val_images_dir: "data/real/inria/patches/val/images"
+  val_masks_dir: "data/real/inria/patches/val/masks"
+  test_images_dir: "data/real/inria/patches/test/images"
+  test_masks_dir: "data/real/inria/patches/test/masks"
+
+dataloader:
+  batch_size: 16
+  num_workers: 0
+  pin_memory: true
+  persistent_workers: false
+
+training:
+  epochs: 80
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "AdamW"
+  scheduler: "CosineAnnealingLR"
+  scheduler_t_max: 80
+  scheduler_eta_min: 0.00001
+  amp: true
+  gradient_clip_norm: 1.0
+  early_stopping:
+    enabled: true
+    patience: 15
+    min_delta: 0.001
+
+loss:
+  type: "BCEDiceLoss"
+  bce_weight: 0.5
+  dice_smooth: 1.0
+
+augmentation:
+  hflip: true
+  vflip: true
+  rot90: true
+  color_jitter: true
+  brightness_range: [0.85, 1.15]
+  contrast_range: [0.85, 1.15]
+
+output:
+  base_dir: "experiments/building_detection"

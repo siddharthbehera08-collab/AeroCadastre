@@ -58,6 +58,8 @@ def export_and_validate_parcels(
                     "crs": p.get("crs", "EPSG:4326"),
                     "provenance": p.get("provenance", {}),
                     "evidence_sources": p.get("evidence_sources", []),
+                    "ulpin_status": "NOT_ASSIGNED_PRE_CADASTRE",
+                    "ulpin_readiness": "METADATA_COMPLIANT_AWAITING_STATE_SURVEY_AUTHORITY",
                     "legal_notice": "PRELIMINARY CANDIDATE GEOMETRY - NOT LEGALLY AUTHORITATIVE",
                 },
                 "geometry": p["geometry"],

@@ -1,0 +1,106 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::32643"
+    }
+  },
+  "metadata": {
+    "DATA_MODE": "SYNTHETIC",
+    "SYNTHETIC_ONLY": true,
+    "FIXTURE_TYPE": "CONTROLLED_SYNTHETIC_TEST_FIXTURE",
+    "DESCRIPTION": "Synthetic building footprints for end-to-end GeoAI cadastral integration testing in EPSG:32643",
+    "LEGAL_DISCLAIMER": "SYNTHETIC TEST DATA ONLY. NOT STATUTORY CADASTRAL BOUNDARIES."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SYN_BLDG_001",
+      "properties": {
+        "id": "SYN_BLDG_001",
+        "building_type": "residential",
+        "confidence": 0.94,
+        "DATA_MODE": "SYNTHETIC"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [375040.0, 2045040.0],
+            [375080.0, 2045040.0],
+            [375080.0, 2045080.0],
+            [375040.0, 2045080.0],
+            [375040.0, 2045040.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SYN_BLDG_002",
+      "properties": {
+        "id": "SYN_BLDG_002",
+        "building_type": "residential",
+        "confidence": 0.91,
+        "DATA_MODE": "SYNTHETIC"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [375120.0, 2045040.0],
+            [375160.0, 2045040.0],
+            [375160.0, 2045080.0],
+            [375120.0, 2045080.0],
+            [375120.0, 2045040.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SYN_BLDG_003",
+      "properties": {
+        "id": "SYN_BLDG_003",
+        "building_type": "commercial",
+        "confidence": 0.88,
+        "DATA_MODE": "SYNTHETIC"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [375040.0, 2045140.0],
+            [375080.0, 2045140.0],
+            [375080.0, 2045180.0],
+            [375040.0, 2045180.0],
+            [375040.0, 2045140.0]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SYN_BLDG_004",
+      "properties": {
+        "id": "SYN_BLDG_004",
+        "building_type": "residential",
+        "confidence": 0.95,
+        "DATA_MODE": "SYNTHETIC"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [375120.0, 2045140.0],
+            [375170.0, 2045140.0],
+            [375170.0, 2045190.0],
+            [375120.0, 2045190.0],
+            [375120.0, 2045140.0]
+          ]
+        ]
+      }
+    }
+  ]
+}

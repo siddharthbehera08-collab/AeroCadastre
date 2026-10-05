@@ -1,0 +1,54 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::32643"
+    }
+  },
+  "metadata": {
+    "DATA_MODE": "SYNTHETIC",
+    "SYNTHETIC_ONLY": true,
+    "FIXTURE_TYPE": "CONTROLLED_SYNTHETIC_TEST_FIXTURE",
+    "DESCRIPTION": "Synthetic road network centerlines for end-to-end GeoAI cadastral integration testing in EPSG:32643",
+    "LEGAL_DISCLAIMER": "SYNTHETIC TEST DATA ONLY. NOT STATUTORY RIGHT-OF-WAY (ROW) BOUNDARIES."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SYN_ROAD_001",
+      "properties": {
+        "id": "SYN_ROAD_001",
+        "highway": "residential",
+        "width_m": 8.0,
+        "confidence": 0.92,
+        "DATA_MODE": "SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [375000.0, 2045110.0],
+          [375250.0, 2045110.0]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SYN_ROAD_002",
+      "properties": {
+        "id": "SYN_ROAD_002",
+        "highway": "residential",
+        "width_m": 8.0,
+        "confidence": 0.89,
+        "DATA_MODE": "SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [375100.0, 2045000.0],
+          [375100.0, 2045250.0]
+        ]
+      }
+    }
+  ]
+}

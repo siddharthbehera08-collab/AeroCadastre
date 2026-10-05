@@ -2,8 +2,23 @@ import json
 import uuid
 import httpx
 import psycopg2
+import pytest
 
 BASE_URL = "http://127.0.0.1:8000"
+
+
+def _is_server_available():
+    try:
+        r = httpx.get("http://127.0.0.1:8000/api/health", timeout=1.0)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+pytestmark = pytest.mark.skipif(
+    not _is_server_available(),
+    reason="Requires live FastAPI server running on http://127.0.0.1:8000",
+)
 
 
 def test_persistence_and_geojson():
