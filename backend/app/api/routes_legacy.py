@@ -455,6 +455,30 @@ def list_scenes(db: Session = Depends(get_db)):
             "rasters": [],
         }
 
+    # Also include any dynamically generated scenes persisted in PostGIS
+    dyn_scene_records = (
+        db.query(Parcel.scene_id)
+        .distinct()
+        .filter(Parcel.parcel_layer == "CANDIDATE")
+        .all()
+    )
+    for (dsc_id,) in dyn_scene_records:
+        if dsc_id and dsc_id not in scenes:
+            scenes[dsc_id] = {
+                "scene_id": dsc_id,
+                "project_id": "PROJ_SIH26012_DEMO",
+                "archetype": "REAL_AI_DYNAMIC_PARCELS",
+                "temporal_epoch": "AI_INFERRED",
+                "gsd_m": 0.5,
+                "pixel_resolution_m": 0.5,
+                "crs": "EPSG:4326",
+                "metric_crs": "EPSG:32643",
+                "origin_lonlat": [73.85674, 18.52043],
+                "description": f"AI Dynamic Inferred Scene {dsc_id}",
+                "available_layers": ["Google_Satellite", "Candidate_Parcels"],
+                "rasters": [],
+            }
+
     rasters = (
         db.query(Raster)
         .order_by(Raster.scene_id.asc(), Raster.temporal_epoch.asc())
@@ -532,7 +556,22 @@ def get_scene_bundle(
         if meta_path.exists():
             scene_meta.update(json.loads(meta_path.read_text(encoding="utf-8")))
     except Exception:
-        pass
+        # Check if this scene was dynamically generated under outputs/
+        dyn_geojson = settings.OUTPUTS_DIR / project_id / safe_scene / f"{safe_scene}_candidate_parcels.geojson"
+        if dyn_geojson.exists():
+            try:
+                gdata = json.loads(dyn_geojson.read_text(encoding="utf-8"))
+                gmeta = gdata.get("metadata", {})
+                bounds = gmeta.get("aoi_bounds", [73.852, 18.516, 73.861, 18.524])
+                scene_meta.update({
+                    "origin_lonlat": [bounds[0], bounds[1]],
+                    "aoi_bounds": bounds,
+                    "span": max(bounds[2] - bounds[0], bounds[3] - bounds[1]),
+                    "archetype": "REAL_AI_DYNAMIC_PARCELS",
+                    "temporal_epoch": "AI_INFERRED",
+                })
+            except Exception:
+                pass
 
 
     cand_parcels = (

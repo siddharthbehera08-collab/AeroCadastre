@@ -97,7 +97,12 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
-        return self.DATABASE_URL
+        url = self.DATABASE_URL
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql+psycopg2://", 1)
+        elif url.startswith("postgresql://") and not url.startswith("postgresql+"):
+            url = url.replace("postgresql://", "postgresql+psycopg2://", 1)
+        return url
 
     @property
     def secret_key(self) -> str:
@@ -121,7 +126,10 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins(self) -> list[str]:
-        return ["*"]
+        raw = os.getenv("CORS_ORIGINS", "*")
+        if raw == "*":
+            return ["*"]
+        return [origin.strip() for origin in raw.split(",") if origin.strip()]
 
 
 settings = Settings()

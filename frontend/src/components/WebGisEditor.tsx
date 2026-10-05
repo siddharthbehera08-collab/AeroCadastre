@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import {
   MousePointer,
   Hand,
@@ -226,12 +226,18 @@ export default function WebGisEditor({
           backgroundColor: "#171615",
         });
         mapInstanceRef.current = map;
+      } else if (dynamicMetadata?.aoi_bounds) {
+        const [minx, miny, maxx, maxy] = dynamicMetadata.aoi_bounds;
+        mapInstanceRef.current.panTo({
+          lat: (miny + maxy) / 2,
+          lng: (minx + maxx) / 2,
+        });
       }
     } catch (err: any) {
       console.warn("[Google Maps] Error initializing Map instance:", err);
       setGoogleMapError(err?.message || "Map initialization failed");
     }
-  }, [isGoogleMapLoaded, layers.googleSatellite]);
+  }, [isGoogleMapLoaded, layers.googleSatellite, dynamicMetadata]);
 
   // Extract layers from bundle, fusing with any dynamically generated AI candidate parcels
   const baseParcels: any[] = bundle?.candidate_parcels || [];
@@ -248,10 +254,45 @@ export default function WebGisEditor({
   const selectedParcel = parcels.find((p) => p.id === selectedParcelId) || null;
   const selectedCouncil = (bundle?.council_decisions || []).find((c: any) => c.parcel_id === selectedParcelId) || null;
 
-  // Geographic coordinate projections
-  const originLon = bundle?.metadata?.origin_lonlat?.[0] ?? 77.592;
-  const originLat = bundle?.metadata?.origin_lonlat?.[1] ?? 12.972;
-  const span = 0.0024;
+  // Geographic coordinate projections - dynamically adapts between Pune Google Satellite / Dynamic AI Parcels and synthetic scene bundle
+  const isDynamicOrPune = Boolean(
+    dynamicParcels.length > 0 ||
+    dynamicMetadata?.aoi_bounds ||
+    layers.googleSatellite
+  );
+
+  const [originLon, originLat, span] = useMemo(() => {
+    if (dynamicMetadata?.aoi_bounds) {
+      const [minx, miny, maxx, maxy] = dynamicMetadata.aoi_bounds;
+      const computedSpan = Math.max(maxx - minx, maxy - miny, 0.001);
+      return [minx, miny, computedSpan];
+    }
+    if (dynamicParcels.length > 0) {
+      let minx = Infinity, miny = Infinity, maxx = -Infinity, maxy = -Infinity;
+      for (const p of dynamicParcels) {
+        const ring = p.geometry?.coordinates?.[0] || [];
+        for (const [x, y] of ring) {
+          if (x < minx) minx = x;
+          if (x > maxx) maxx = x;
+          if (y < miny) miny = y;
+          if (y > maxy) maxy = y;
+        }
+      }
+      if (minx < Infinity && maxx > -Infinity) {
+        const computedSpan = Math.max(maxx - minx, maxy - miny, 0.001);
+        return [minx, miny, computedSpan];
+      }
+    }
+    if (layers.googleSatellite) {
+      // Pune Historic Core (Kasba Peth) default bounding envelope
+      return [73.8540, 18.5180, 0.0050];
+    }
+    // Synthetic benchmark default
+    const oLon = bundle?.metadata?.origin_lonlat?.[0] ?? 77.592;
+    const oLat = bundle?.metadata?.origin_lonlat?.[1] ?? 12.972;
+    return [oLon, oLat, 0.0024];
+  }, [dynamicParcels, dynamicMetadata, layers.googleSatellite, bundle?.metadata?.origin_lonlat]);
+
   const VIEW_SIZE = 760;
 
   const lonLatToSvg = useCallback(
@@ -260,7 +301,7 @@ export default function WebGisEditor({
       const y = (1.0 - (lat - originLat) / span) * VIEW_SIZE;
       return [x, y];
     },
-    [originLon, originLat]
+    [originLon, originLat, span]
   );
 
   const svgToLonLat = useCallback(
@@ -269,7 +310,7 @@ export default function WebGisEditor({
       const lat = originLat + (1.0 - y / VIEW_SIZE) * span;
       return [Number(lon.toFixed(7)), Number(lat.toFixed(7))];
     },
-    [originLon, originLat]
+    [originLon, originLat, span]
   );
 
   const ringToSvgPoints = useCallback(
@@ -549,6 +590,7 @@ export default function WebGisEditor({
     if (!selectedParcel || editingVertices.length < 3) return;
     setBusy(true);
     try {
+      const newStatus = overrideStatus || "ADMIN_EDITED";
       const closedRing = [...editingVertices, editingVertices[0]];
       const res = await fetch(`${API_BASE}/api/parcels/${selectedParcel.id}`, {
         method: "PUT",
@@ -556,7 +598,7 @@ export default function WebGisEditor({
         body: JSON.stringify({
           geometry: { type: "Polygon", coordinates: [closedRing] },
           land_use_class: editLandUse,
-          verification_status: overrideStatus || selectedParcel.verification_status,
+          verification_status: newStatus,
           operator_id: activeRole,
           reason: editReason,
         }),
@@ -565,11 +607,26 @@ export default function WebGisEditor({
         const err = await res.json();
         throw new Error(err.detail || "Failed to update parcel");
       }
+      const updatedData = await res.json();
+      // Update local dynamicParcels array if this parcel was part of dynamic parcelling
+      setDynamicParcels((prev) =>
+        prev.map((p) =>
+          p.id === selectedParcel.id
+            ? {
+                ...p,
+                geometry: updatedData.geometry || { type: "Polygon", coordinates: [closedRing] },
+                land_use_class: editLandUse,
+                verification_status: newStatus,
+                version: (p.version || 1) + 1,
+              }
+            : p
+        )
+      );
       await onRefreshBundle();
       setStatusNotification({
-        msg: `Successfully saved ${selectedParcel.id} to PostGIS (Status: ${
-          overrideStatus || "UPDATED"
-        }, v${(selectedParcel.version || 1) + 1}).`,
+        msg: `Successfully saved ${selectedParcel.id} to PostGIS (Status: ${newStatus}, v${
+          (selectedParcel.version || 1) + 1
+        }).`,
         type: "success",
       });
     } catch (err: any) {

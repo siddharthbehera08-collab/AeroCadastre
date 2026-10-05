@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
 
-PROJECT_ROOT = Path(os.getenv("PROJECT_ROOT", "D:/SIH26012_AeroCadastre")).resolve()
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(os.getenv("PROJECT_ROOT", str(_REPO_ROOT))).resolve()
 DATA_DIR = Path(os.getenv("DATA_DIR", str(PROJECT_ROOT / "data"))).resolve()
 SYNTHETIC_DATA_DIR = Path(os.getenv("SYNTHETIC_DATA_DIR", str(PROJECT_ROOT / "synthetic_data"))).resolve()
 MODELS_DIR = Path(os.getenv("MODELS_DIR", str(PROJECT_ROOT / "models"))).resolve()

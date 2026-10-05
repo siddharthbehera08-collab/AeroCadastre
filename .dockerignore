@@ -1,0 +1,47 @@
+# Version control
+.git
+.github
+.gitignore
+
+# Environment & Secrets (NEVER bake into image)
+.env
+.env.*
+!.env.example
+
+# Python cache & tooling
+__pycache__
+*.py[cod]
+*.pyo
+.pytest_cache
+.cache
+.mypy_cache
+.ruff_cache
+.venv
+.venv*
+venv*
+env*
+
+# Node / Frontend (not needed in backend container)
+frontend
+node_modules
+.next
+out
+*.tsbuildinfo
+
+# Large datasets & raw downloads
+data
+dataset
+
+# Generated outputs, logs, local databases
+outputs
+logs
+*.log
+experiments/*.png
+*.db
+*.sqlite
+*.sqlite3
+
+# OS metadata
+.DS_Store
+Thumbs.db
+.vscode

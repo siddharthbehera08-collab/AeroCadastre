@@ -356,20 +356,20 @@ class DynamicParcelEngine:
                         extracted_buildings.append(bp)
                         seeds.append(bp.centroid)
 
-        # If too many seeds (e.g. > 40 in dense urban area), cluster or sample to prevent micro-cells
-        if len(seeds) > 35:
-            # Subsample evenly to produce practical candidate cadastral blocks/plots
-            step = max(1, len(seeds) // 25)
-            seeds = seeds[::step][:30]
+        # If too many seeds (e.g. > 150 in very large AOI), cluster or sample to prevent micro-cells
+        if len(seeds) > 120:
+            step = max(1, len(seeds) // 100)
+            seeds = seeds[::step][:100]
 
-        # If sparse building seeds in the AOI, add regular interior grid seeds for open spaces
-        if len(seeds) < 6:
-            grid_step_x = (maxx - minx) / 4.0
-            grid_step_y = (maxy - miny) / 4.0
-            for i in range(1, 4):
-                for j in range(1, 4):
+        # If sparse building seeds in the AOI, add regular interior grid seeds for open spaces & plots
+        if len(seeds) < 25:
+            grid_n = 6
+            grid_step_x = (maxx - minx) / float(grid_n)
+            grid_step_y = (maxy - miny) / float(grid_n)
+            for i in range(1, grid_n):
+                for j in range(1, grid_n):
                     pt = Point(minx + i * grid_step_x, miny + j * grid_step_y)
-                    if not any(pt.distance(s) < (grid_step_x * 0.35) for s in seeds):
+                    if not any(pt.distance(s) < (grid_step_x * 0.40) for s in seeds):
                         seeds.append(pt)
 
         # Step 5: Road corridor exclusion
