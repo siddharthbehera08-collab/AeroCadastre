@@ -22,15 +22,8 @@ from backend.app.schemas.job_schemas import (
     DatasetRegisterRequest,
 )
 from backend.gis.raster_ingestion import RasterIngestionEngine
-from experiments.adapters.model_a_adapter import ModelABuildingAdapter
-from experiments.adapters.model_b_adapter import ModelBRoadAdapter
-from experiments.adapters.model_d_adapter import ModelDTerrainAdapter
-from experiments.model_boundary.boundary_evidence import BoundaryEvidenceEngine
-from experiments.model_e_fusion.fusion_engine import MultiSourceFusionEngine
-from experiments.model_f_parcel_inference.parcel_inference import ParcelInferenceEngine
-from experiments.model_g_topology.topology_validator import TopologyValidator
-from experiments.model_h_anomaly.anomaly_detector import AnomalyDetector
-from experiments.confidence.confidence_engine import ConfidenceEngine
+# Optional experiment pipeline. Its source is intentionally not part of the production
+# container, so it must not prevent FastAPI itself from starting.
 from backend.council.agents import evaluate_parcel_with_council
 from backend.gis.exporter import export_and_validate_parcels
 
@@ -60,15 +53,43 @@ class OrchestrationService:
     def __init__(self, store: Optional[OrchestrationStore] = None):
         self.store = store or GLOBAL_ORCHESTRATION_STORE
         self.raster_engine = RasterIngestionEngine()
-        self.model_a = ModelABuildingAdapter()
-        self.model_b = ModelBRoadAdapter()
-        self.model_d = ModelDTerrainAdapter()
-        self.boundary_engine = BoundaryEvidenceEngine()
-        self.fusion_engine = MultiSourceFusionEngine()
-        self.parcel_engine = ParcelInferenceEngine()
-        self.topology_validator = TopologyValidator()
-        self.anomaly_detector = AnomalyDetector()
-        self.confidence_engine = ConfidenceEngine()
+        self.model_a = None
+        self.model_b = None
+        self.model_d = None
+        self.boundary_engine = None
+        self.fusion_engine = None
+        self.parcel_engine = None
+        self.topology_validator = None
+        self.anomaly_detector = None
+        self.confidence_engine = None
+        self.pipeline_available = False
+
+        try:
+            from experiments.adapters.model_a_adapter import ModelABuildingAdapter
+            from experiments.adapters.model_b_adapter import ModelBRoadAdapter
+            from experiments.adapters.model_d_adapter import ModelDTerrainAdapter
+            from experiments.model_boundary.boundary_evidence import BoundaryEvidenceEngine
+            from experiments.model_e_fusion.fusion_engine import MultiSourceFusionEngine
+            from experiments.model_f_parcel_inference.parcel_inference import ParcelInferenceEngine
+            from experiments.model_g_topology.topology_validator import TopologyValidator
+            from experiments.model_h_anomaly.anomaly_detector import AnomalyDetector
+            from experiments.confidence.confidence_engine import ConfidenceEngine
+
+            self.model_a = ModelABuildingAdapter()
+            self.model_b = ModelBRoadAdapter()
+            self.model_d = ModelDTerrainAdapter()
+            self.boundary_engine = BoundaryEvidenceEngine()
+            self.fusion_engine = MultiSourceFusionEngine()
+            self.parcel_engine = ParcelInferenceEngine()
+            self.topology_validator = TopologyValidator()
+            self.anomaly_detector = AnomalyDetector()
+            self.confidence_engine = ConfidenceEngine()
+            self.pipeline_available = True
+        except ModuleNotFoundError:
+            # The production backend remains usable through backend-native services.
+            # The legacy experiment pipeline is unavailable until its source package
+            # is explicitly packaged into the deployment image.
+            self.pipeline_available = False
 
     def register_dataset(self, project_id: str, req: DatasetRegisterRequest) -> Dict[str, Any]:
         """Register a new raster or vector dataset for a project."""
@@ -111,6 +132,11 @@ class OrchestrationService:
         """
         Executes complete 10-stage automated pipeline synchronously or initializes job.
         """
+        if not self.pipeline_available:
+            raise RuntimeError(
+                "Legacy experiment pipeline is not packaged in this production build. "
+                "Use the backend-native dynamic parcel generation endpoint for production inference."
+            )
         job_id = f"JOB_{uuid.uuid4().hex[:10]}"
         now_iso = datetime.now(timezone.utc).isoformat()
         job_record = {
