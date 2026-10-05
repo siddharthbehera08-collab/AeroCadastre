@@ -9,6 +9,7 @@ from backend.app.schemas.api_schemas import (
     ParcelUpdateRequest,
     ParcelSplitRequest,
     ParcelMergeRequest,
+    DynamicParcellingRequest,
 )
 from backend.app.services.parcel_service import (
     list_project_parcels,
@@ -100,3 +101,25 @@ def api_split_parcel(
     db: Session = Depends(get_db),
 ):
     return split_parcel(db, parcel_id, req)
+
+
+@router.post("/api/parcels/generate-candidates")
+def api_generate_candidate_parcels(
+    req: DynamicParcellingRequest,
+    _user: dict = Depends(get_optional_user),
+    db: Session = Depends(get_db),
+):
+    """
+    Generate dynamic preliminary parcel candidates from real imagery and multi-model GeoAI evidence.
+    Returns GeoJSON FeatureCollection with explicit AI-generated provenance and topology validation.
+    """
+    from backend.app.services.parcel_service import generate_dynamic_candidates
+
+    return generate_dynamic_candidates(
+        db=db,
+        aoi_bounds=req.aoi_bounds,
+        project_id=req.project_id,
+        resolution=req.resolution,
+        persist_to_postgis=req.persist_to_postgis,
+        operator_id=req.operator_id,
+    )

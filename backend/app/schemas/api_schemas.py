@@ -141,6 +141,19 @@ class ParcelResponse(BaseModel):
     updated_at: Optional[str] = None
 
 
+class DynamicParcellingRequest(BaseModel):
+    aoi_bounds: List[float] = Field(
+        ...,
+        min_length=4,
+        max_length=4,
+        description="Bounding box [min_lon, min_lat, max_lon, max_lat] in EPSG:4326.",
+    )
+    project_id: str = Field(default="PROJ_SIH26012_DEMO")
+    resolution: float = Field(default=0.5, ge=0.1, le=20.0)
+    persist_to_postgis: bool = Field(default=True)
+    operator_id: str = Field(default="Surveyor_Verifier_01")
+
+
 # ============================================================================
 # 4. Verification Schemas
 # ============================================================================

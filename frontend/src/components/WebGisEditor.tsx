@@ -28,6 +28,8 @@ import {
   Info,
   Building2,
   Navigation,
+  Scan,
+  Sparkles,
 } from "lucide-react";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
@@ -58,6 +60,7 @@ export type GisToolMode =
   | "select"
   | "pan"
   | "draw"
+  | "aoi_box"
   | "edit"
   | "split"
   | "merge"
@@ -130,6 +133,12 @@ export default function WebGisEditor({
 
   // Polygon Drawing mode state
   const [drawnPoints, setDrawnPoints] = useState<[number, number][]>([]);
+
+  // Interactive AOI Selection & Dynamic AI Parcelling state
+  const [aoiBoxPoints, setAoiBoxPoints] = useState<[number, number][]>([]);
+  const [dynamicParcels, setDynamicParcels] = useState<any[]>([]);
+  const [dynamicMetadata, setDynamicMetadata] = useState<any | null>(null);
+  const [isParcellingActive, setIsParcellingActive] = useState<boolean>(false);
 
   // Interactive Measure Tool state
   const [measurePoints, setMeasurePoints] = useState<[number, number][]>([]);
@@ -224,8 +233,9 @@ export default function WebGisEditor({
     }
   }, [isGoogleMapLoaded, layers.googleSatellite]);
 
-  // Extract layers from bundle
-  const parcels: any[] = bundle?.candidate_parcels || [];
+  // Extract layers from bundle, fusing with any dynamically generated AI candidate parcels
+  const baseParcels: any[] = bundle?.candidate_parcels || [];
+  const parcels: any[] = dynamicParcels.length > 0 ? dynamicParcels : baseParcels;
   const refParcels: any[] = bundle?.reference_parcels || [];
   const buildings: any[] = bundle?.buildings || [];
   const roads: any[] = bundle?.roads || [];
@@ -352,6 +362,12 @@ export default function WebGisEditor({
 
     if (activeTool === "draw") {
       setDrawnPoints((prev) => [...prev, [lon, lat]]);
+    } else if (activeTool === "aoi_box") {
+      if (aoiBoxPoints.length >= 2) {
+        setAoiBoxPoints([[lon, lat]]);
+      } else {
+        setAoiBoxPoints((prev) => [...prev, [lon, lat]]);
+      }
     } else if (activeTool === "measure") {
       if (measurePoints.length >= 2) {
         setMeasurePoints([[lon, lat]]);
@@ -367,6 +383,86 @@ export default function WebGisEditor({
           setMeasuredDistanceM(Number(dist.toFixed(1)));
         }
       }
+    }
+  };
+
+  // Run Real Multi-Model Dynamic AI Parcelling on selected AOI
+  const handleRunDynamicParcelling = async (customBounds?: [number, number, number, number]) => {
+    let boundsToUse: [number, number, number, number];
+    if (customBounds) {
+      boundsToUse = customBounds;
+    } else if (aoiBoxPoints.length >= 2) {
+      const minLon = Math.min(aoiBoxPoints[0][0], aoiBoxPoints[1][0]);
+      const maxLon = Math.max(aoiBoxPoints[0][0], aoiBoxPoints[1][0]);
+      const minLat = Math.min(aoiBoxPoints[0][1], aoiBoxPoints[1][1]);
+      const maxLat = Math.max(aoiBoxPoints[0][1], aoiBoxPoints[1][1]);
+      boundsToUse = [minLon, minLat, maxLon, maxLat];
+    } else {
+      // Default to visible viewport bounds
+      const [tlLon, tlLat] = svgToLonLat(20, 20);
+      const [brLon, brLat] = svgToLonLat(VIEW_SIZE - 20, VIEW_SIZE - 20);
+      boundsToUse = [
+        Math.min(tlLon, brLon),
+        Math.min(tlLat, brLat),
+        Math.max(tlLon, brLon),
+        Math.max(tlLat, brLat),
+      ];
+    }
+
+    setIsParcellingActive(true);
+    setBusy(true);
+    setStatusNotification({
+      msg: "Executing real multi-model GeoAI inference & parcel synthesis across AOI...",
+      type: "info",
+    });
+
+    try {
+      const res = await fetch(`${API_BASE}/api/parcels/generate-candidates`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          aoi_bounds: boundsToUse,
+          project_id: bundle?.project_id || "PROJ_SIH26012_DEMO",
+          resolution: 0.5,
+          persist_to_postgis: true,
+          operator_id: activeRole,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || "Dynamic AI Parcelling failed");
+      }
+
+      const geojsonData = await res.json();
+      const extractedParcels = (geojsonData.features || []).map((feat: any) => ({
+        ...feat.properties,
+        geometry: feat.geometry,
+      }));
+
+      setDynamicParcels(extractedParcels);
+      setDynamicMetadata(geojsonData.metadata);
+      setAoiBoxPoints([]);
+      setActiveTool("select");
+
+      if (extractedParcels.length > 0) {
+        onSelectParcel(extractedParcels[0].id);
+      }
+
+      setStatusNotification({
+        msg: `Synthesized ${extractedParcels.length} candidate parcels with mean confidence ${(
+          geojsonData.metadata?.mean_confidence * 100
+        ).toFixed(1)}% in ${geojsonData.metadata?.processing_time_ms}ms.`,
+        type: "success",
+      });
+    } catch (err: any) {
+      setStatusNotification({
+        msg: `Parcelling error: ${err.message}`,
+        type: "error",
+      });
+    } finally {
+      setIsParcellingActive(false);
+      setBusy(false);
     }
   };
 
@@ -649,6 +745,7 @@ export default function WebGisEditor({
           {[
             { id: "select", icon: MousePointer, label: "Select (V)" },
             { id: "pan", icon: Hand, label: "Pan (H / Alt)" },
+            { id: "aoi_box", icon: Scan, label: "Select AOI Box for AI Parcelling" },
             { id: "edit", icon: Edit3, label: "Edit Vertices" },
             { id: "draw", icon: PenTool, label: "Digitize Polygon" },
             { id: "snap", icon: Magnet, label: "Snap to Ref GIS" },
@@ -727,6 +824,19 @@ export default function WebGisEditor({
           </div>
 
           <div className="flex items-center gap-2 pointer-events-auto">
+            {/* Run AI Parcelling on AOI / Viewport */}
+            <button
+              onClick={() => handleRunDynamicParcelling()}
+              disabled={isParcellingActive || busy}
+              title="Run real multi-evidence GeoAI inference to generate candidate parcel boundaries"
+              className="px-3.5 py-1.5 rounded-lg bg-[#24221F] hover:bg-[#302C28] text-[#FAF8F3] border border-[#302C28] text-xs font-mono flex items-center gap-2 shadow-sm transition-all disabled:opacity-50"
+            >
+              <Sparkles className={`w-3.5 h-3.5 text-[#C5AA8C] ${isParcellingActive ? "animate-spin" : ""}`} />
+              <span className="font-semibold">
+                {isParcellingActive ? "Synthesizing AI Parcels..." : "Run AI Parcelling"}
+              </span>
+            </button>
+
             {/* Quick Search Button */}
             <div className="relative">
               <button
@@ -844,23 +954,30 @@ export default function WebGisEditor({
           </div>
         )}
 
-        {/* Draw Mode Active Banner */}
-        {activeTool === "draw" && (
-          <div className="absolute top-14 left-6 z-20 px-4 py-2.5 rounded-xl bg-[#FAF8F3] border border-[#3D6B52] shadow-elevated text-xs space-y-2">
-            <div className="font-mono text-[11px] text-[#3D6B52] font-semibold">
-              Drawing Polygon: {drawnPoints.length} vertices placed
+        {/* AOI Box Selection Mode Active Banner */}
+        {activeTool === "aoi_box" && (
+          <div className="absolute top-14 left-6 z-20 px-4 py-2.5 rounded-xl bg-[#FAF8F3] border border-[#8A735F] shadow-elevated text-xs space-y-2">
+            <div className="font-mono text-[11px] text-[#8A735F] font-semibold flex items-center gap-2">
+              <Scan className="w-3.5 h-3.5" />
+              <span>Select AOI: {aoiBoxPoints.length}/2 corners defined</span>
+            </div>
+            <div className="text-[11px] text-[#6B5748]">
+              {aoiBoxPoints.length === 0 && "Click first corner of your Area of Interest."}
+              {aoiBoxPoints.length === 1 && "Click opposite corner to define the AOI bounding box."}
+              {aoiBoxPoints.length >= 2 && "AOI defined! Click 'Run AI Parcelling' to synthesize candidates."}
             </div>
             <div className="flex items-center gap-2">
               <button
-                onClick={handleFinishCreateParcel}
-                disabled={busy || drawnPoints.length < 3}
-                className="btn-primary-dark px-3 py-1 rounded-lg text-xs font-medium disabled:opacity-50"
+                onClick={() => handleRunDynamicParcelling()}
+                disabled={isParcellingActive || aoiBoxPoints.length < 2}
+                className="btn-primary-dark px-3 py-1 rounded-lg text-xs font-medium disabled:opacity-50 flex items-center gap-1.5"
               >
-                Finish New Parcel
+                <Sparkles className="w-3 h-3 text-[#C5AA8C]" />
+                <span>Run AI Parcelling on AOI</span>
               </button>
               <button
                 onClick={() => {
-                  setDrawnPoints([]);
+                  setAoiBoxPoints([]);
                   setActiveTool("select");
                 }}
                 className="px-2.5 py-1 rounded-lg bg-[#EEEAE2] text-[#24221F] text-xs"
@@ -1292,6 +1409,46 @@ export default function WebGisEditor({
                     />
                   );
                 })}
+              </g>
+            )}
+
+            {/* 15. AOI Box Selection Preview */}
+            {activeTool === "aoi_box" && aoiBoxPoints.length > 0 && (
+              <g>
+                {aoiBoxPoints.map((pt, i) => {
+                  const [ax, ay] = lonLatToSvg(pt[0], pt[1]);
+                  return (
+                    <circle
+                      key={i}
+                      cx={ax}
+                      cy={ay}
+                      r={6}
+                      fill="#F59E0B"
+                      stroke="#171615"
+                      strokeWidth={2}
+                    />
+                  );
+                })}
+                {aoiBoxPoints.length === 2 && (() => {
+                  const [p1x, p1y] = lonLatToSvg(aoiBoxPoints[0][0], aoiBoxPoints[0][1]);
+                  const [p2x, p2y] = lonLatToSvg(aoiBoxPoints[1][0], aoiBoxPoints[1][1]);
+                  const rx = Math.min(p1x, p2x);
+                  const ry = Math.min(p1y, p2y);
+                  const rw = Math.abs(p2x - p1x);
+                  const rh = Math.abs(p2y - p1y);
+                  return (
+                    <rect
+                      x={rx}
+                      y={ry}
+                      width={rw}
+                      height={rh}
+                      fill="rgba(245, 158, 11, 0.18)"
+                      stroke="#F59E0B"
+                      strokeWidth={2.5}
+                      strokeDasharray="6 4"
+                    />
+                  );
+                })()}
               </g>
             )}
 
@@ -1822,6 +1979,18 @@ export default function WebGisEditor({
                 </div>
               </div>
             )}
+
+            {/* AI-Generated Candidate Disclaimer Box */}
+            <div className="p-3.5 rounded-xl bg-[#FAF8F3] border border-[#D2C9BC] space-y-1.5 text-xs">
+              <div className="flex items-center gap-2 text-[#6B5748] font-mono text-[10px] uppercase font-bold tracking-wider">
+                <ShieldAlert className="w-3.5 h-3.5 text-[#9E6B20]" />
+                <span>Statutory Survey Disclaimer</span>
+              </div>
+              <p className="text-[10px] text-[#5C554E] leading-relaxed font-mono">
+                {selectedParcel.provenance?.disclaimer ||
+                  "AI-GENERATED PRELIMINARY CANDIDATE GEOMETRY. Not an authoritative cadastral survey, title deed, or legal revenue map. Ground verification mandatory."}
+              </p>
+            </div>
           </div>
         )}
       </aside>

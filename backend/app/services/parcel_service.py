@@ -733,3 +733,99 @@ def merge_parcels(db: Session, req: ParcelMergeRequest) -> Dict[str, Any]:
     db.refresh(pa)
     return serialize_parcel(pa)
 
+
+def generate_dynamic_candidates(
+    db: Session,
+    aoi_bounds: List[float],
+    project_id: str = "PROJ_SIH26012_DEMO",
+    resolution: float = 0.5,
+    persist_to_postgis: bool = True,
+    operator_id: str = "Surveyor_Verifier_01",
+) -> Dict[str, Any]:
+    """
+    Execute the Dynamic Multi-Evidence Parcel Engine over the given AOI,
+    optionally persisting the preliminary candidates to PostGIS with topology tracking.
+    """
+    from backend.gis.dynamic_parceler import dynamic_parcel_engine
+
+    project = db.query(Project).filter(Project.id == project_id).first()
+    if not project:
+        raise HTTPException(
+            status_code=404, detail=f"Project '{project_id}' not found."
+        )
+
+    try:
+        result = dynamic_parcel_engine.generate_candidate_parcels_for_aoi(
+            aoi_bounds=aoi_bounds,
+            project_id=project_id,
+            resolution_m=resolution,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Dynamic parcelling failed: {exc}") from exc
+
+    scene_id = result["metadata"]["scene_id"]
+
+    if persist_to_postgis and result.get("features"):
+        for feat in result["features"]:
+            props = feat["properties"]
+            geom_dict = feat["geometry"]
+            poly_geom = shape(geom_dict)
+            wkb_geom = shape_to_wkb_element(poly_geom, srid=4326)
+
+            existing = db.query(Parcel).filter(Parcel.id == props["id"]).first()
+            if not existing:
+                db.add(
+                    Parcel(
+                        id=props["id"],
+                        project_id=project_id,
+                        scene_id=scene_id,
+                        temporal_epoch=props.get("temporal_epoch", "T1"),
+                        parcel_layer="CANDIDATE",
+                        boundary_representation=props.get("boundary_representation", "INFERRED"),
+                        land_use_class=props.get("land_use_class", "residential"),
+                        area_sqm=props["area_sqm"],
+                        perimeter_m=props["perimeter_m"],
+                        compactness=props.get("compactness", 0.0),
+                        building_count=props.get("building_count", 0),
+                        road_access=props.get("road_access", True),
+                        dsm_mean_elevation_m=props.get("dsm_mean_elevation_m", 215.0),
+                        crs=props.get("crs", "EPSG:4326"),
+                        confidence=props["confidence"],
+                        confidence_category=props["confidence_category"],
+                        confidence_breakdown_json=json.dumps(props.get("confidence_breakdown", {})),
+                        evidence_sources_json=json.dumps(props.get("evidence_sources", [])),
+                        topology_status=props.get("topology_status", "VALID"),
+                        conflict_status="NONE",
+                        anomaly_status="NONE",
+                        verification_status=props.get("verification_status", "AI-GENERATED / REQUIRES VERIFICATION"),
+                        verification_priority=props.get("verification_priority", "MEDIUM"),
+                        council_decision=props.get("council_decision", "REQUIRES_VERIFICATION"),
+                        ulpin_ready_metadata_json=json.dumps(props.get("ulpin_ready_metadata", {})),
+                        provenance_json=json.dumps(props.get("provenance", {})),
+                        version=1,
+                        geometry_geojson=json.dumps(geom_dict),
+                        geom=wkb_geom,
+                    )
+                )
+
+        record_audit_log(
+            db=db,
+            project_id=project_id,
+            actor=operator_id,
+            operation="DYNAMIC_PARCELLING_SYNTHESIS",
+            target_id=scene_id,
+            old_value={"aoi_bounds": aoi_bounds},
+            new_value={
+                "candidate_count": len(result["features"]),
+                "mean_confidence": result["metadata"]["mean_confidence"],
+                "processing_time_ms": result["metadata"]["processing_time_ms"],
+            },
+            source="GeoAI Dynamic Parcel Engine",
+            confidence=result["metadata"]["mean_confidence"],
+        )
+        db.commit()
+
+    return result
+
